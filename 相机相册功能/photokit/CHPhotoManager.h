@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
 #import "CHPhotoConfiguration.h"
+#import "CHAlbumModel.h"
 
 /**
  *  照片选择的管理类, 使用照片选择时必须先懒加载此类,然后赋值给对应的对象
@@ -33,6 +34,14 @@ typedef enum : NSUInteger {
  @param type 选择类型
  */
 - (instancetype)initWithType:(CHPhotoManagerSelectedType)type;
+
+/**
+ 获取系统所有相册
+
+ @param albums 相册集合
+ */
+- (void)getAllPhotoAlbums:(void(^)(CHAlbumModel *firstAlbumModel))firstModel albums:(void(^)(NSArray *albums))albums isFirst:(BOOL)isFirst;
+
 
 /**
  配置信息

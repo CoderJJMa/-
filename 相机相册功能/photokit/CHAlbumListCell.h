@@ -16,14 +16,11 @@
 
 - (void)cancelRequest ;
 
-@property (strong, nonatomic) UIImageView *coverView1;
-@property (strong, nonatomic) UIImageView *coverView2;
-@property (strong, nonatomic) UIImageView *coverView3;
+@property (strong, nonatomic) UIImageView *coverView;
+@property (strong, nonatomic) UIButton *selectNumberBtn;
 @property (strong, nonatomic) UILabel *albumNameLb;
 @property (strong, nonatomic) UILabel *photoNumberLb;
-@property (assign, nonatomic) PHImageRequestID requestId1;
-@property (assign, nonatomic) PHImageRequestID requestId2;
-@property (assign, nonatomic) PHImageRequestID requestId3;
+@property (assign, nonatomic) PHImageRequestID requestID;
 
 
 @end

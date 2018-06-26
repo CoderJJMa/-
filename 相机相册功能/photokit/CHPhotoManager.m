@@ -18,4 +18,11 @@
 
 }
 
+- (void)getAllPhotoAlbums:(void(^)(CHAlbumModel *firstAlbumModel))firstModel albums:(void(^)(NSArray *albums))albums isFirst:(BOOL)isFirst{
+
+
+
+
+}
+
 @end
