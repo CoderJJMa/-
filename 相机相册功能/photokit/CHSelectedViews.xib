@@ -191,9 +191,13 @@
             <connections>
                 <outlet property="commitView" destination="its-bR-rG1" id="tkE-aX-Gw7"/>
                 <outlet property="countLabel" destination="TxP-7T-wJA" id="mR5-HU-OZ2"/>
+                <outlet property="firstImage" destination="OoD-zT-lOl" id="lwf-01-Ozo"/>
                 <outlet property="firstImg" destination="4mv-f0-lHn" id="459-cq-BoE"/>
+                <outlet property="fourImage" destination="g5z-U2-Zaw" id="Tuz-HT-q2e"/>
                 <outlet property="fourImg" destination="osp-WM-WhB" id="vta-hj-ZSC"/>
+                <outlet property="secondImage" destination="DvN-AB-CBp" id="xMN-Ps-UCn"/>
                 <outlet property="secondImg" destination="gaf-50-U7b" id="4xC-8a-oeR"/>
+                <outlet property="thirdImage" destination="hyz-8h-dSR" id="r6v-C9-ofC"/>
                 <outlet property="thirdImg" destination="NCf-qZ-zlg" id="10e-h9-yxT"/>
             </connections>
             <point key="canvasLocation" x="73" y="200"/>

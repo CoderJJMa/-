@@ -210,10 +210,145 @@
 
     [cell selectedIndexPath:indexPath model:model photos:self.allSelectedPhotos];
 
-
 //    [self.allSelectedPhotos enumerateObjectsUsingBlock:^(CHPhotoModel  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
 //
 //    }];
+
+    [self selectedViewUI];
+
+    [self deleteAddUI];
+
+}
+
+- (void)deleteAddUI{
+
+    PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
+
+
+    if (self.allSelectedPhotos.count > 0) {
+
+        if (self.allSelectedPhotos.count == 1) {
+
+            self.selectedView.firstImg.hidden = NO;
+
+            CHPhotoModel *model = self.allSelectedPhotos[0];
+
+            [[PHImageManager defaultManager] requestImageForAsset:model.asset targetSize:model.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.selectedView.firstImage.image = result;
+                });
+            }];
+
+
+        }else if (self.allSelectedPhotos.count == 2){
+
+            CHPhotoModel *model1 = self.allSelectedPhotos[0];
+            CHPhotoModel *model2 = self.allSelectedPhotos[1];
+
+            self.selectedView.firstImg.hidden = NO;
+            self.selectedView.secondImg.hidden = NO;
+
+
+            [[PHImageManager defaultManager] requestImageForAsset:model1.asset targetSize:model1.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.selectedView.secondImage.image = result;
+                });
+            }];
+
+            [[PHImageManager defaultManager] requestImageForAsset:model2.asset targetSize:model2.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.selectedView.firstImage.image = result;
+                });
+            }];
+
+
+        }else if (self.allSelectedPhotos.count == 3){
+
+            CHPhotoModel *model1 = self.allSelectedPhotos[0];
+            CHPhotoModel *model2 = self.allSelectedPhotos[1];
+            CHPhotoModel *model3 = self.allSelectedPhotos[2];
+
+            self.selectedView.firstImg.hidden = NO;
+            self.selectedView.secondImg.hidden = NO;
+            self.selectedView.thirdImg.hidden = NO;
+
+
+            [[PHImageManager defaultManager] requestImageForAsset:model1.asset targetSize:model1.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.selectedView.secondImage.image = result;
+                });
+            }];
+
+            [[PHImageManager defaultManager] requestImageForAsset:model2.asset targetSize:model2.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.selectedView.firstImage.image = result;
+                });
+            }];
+
+            [[PHImageManager defaultManager] requestImageForAsset:model3.asset targetSize:model3.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.selectedView.thirdImage.image = result;
+                });
+            }];
+
+
+        }else if (self.allSelectedPhotos.count == 4){
+
+            CHPhotoModel *model1 = self.allSelectedPhotos[0];
+            CHPhotoModel *model2 = self.allSelectedPhotos[1];
+            CHPhotoModel *model3 = self.allSelectedPhotos[2];
+            CHPhotoModel *model4 = self.allSelectedPhotos[3];
+
+
+            self.selectedView.firstImg.hidden = NO;
+            self.selectedView.secondImg.hidden = NO;
+            self.selectedView.thirdImg.hidden = NO;
+            self.selectedView.fourImg.hidden = NO;
+
+            [[PHImageManager defaultManager] requestImageForAsset:model1.asset targetSize:model1.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.selectedView.secondImage.image = result;
+                });
+            }];
+
+            [[PHImageManager defaultManager] requestImageForAsset:model2.asset targetSize:model2.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.selectedView.firstImage.image = result;
+                });
+            }];
+
+            [[PHImageManager defaultManager] requestImageForAsset:model4.asset targetSize:model4.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.selectedView.fourImage.image = result;
+                });
+            }];
+
+            [[PHImageManager defaultManager] requestImageForAsset:model3.asset targetSize:model3.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.selectedView.thirdImage.image = result;
+                });
+            }];
+
+
+        }
+
+    }
+
+
+}
+
+// 底部选中图片显示/隐藏
+- (void)selectedViewUI{
 
     if(self.allSelectedPhotos.count > 0){
         [UIView animateWithDuration:0.3 animations:^{
@@ -226,7 +361,6 @@
         }];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"ContentInsert" object:@0];
     }
-
 
 }
 

@@ -10,6 +10,17 @@
 
 @implementation CHSelectedViews
 
+- (void)awakeFromNib{
+
+    [super awakeFromNib];
+
+    self.firstImg.hidden = YES;
+    self.secondImg.hidden = YES;
+    self.thirdImg.hidden = YES;
+    self.fourImg.hidden = YES;
+
+}
+
 + (instancetype)loadView{
 
     UINib * nib = [UINib nibWithNibName:@"CHSelectedViews" bundle:nil];

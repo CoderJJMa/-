@@ -37,6 +37,7 @@
 - (void)setModel:(CHPhotoModel *)model {
 
     _model = model;
+    _model.size = CGSizeMake(self.hx_w * 1.5, self.hx_w * 1.5);
 
     PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
 

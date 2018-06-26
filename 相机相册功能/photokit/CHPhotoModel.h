@@ -15,4 +15,6 @@
 
 @property (nonatomic,strong)PHAsset *asset;
 
+@property (nonatomic,assign)CGSize size;
+
 @end
