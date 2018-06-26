@@ -1,0 +1,20 @@
+PODS:
+  - HXWeiboPhotoPicker (2.1.5):
+    - SDWebImage (~> 4.0)
+  - Masonry (1.1.0)
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
+
+DEPENDENCIES:
+  - HXWeiboPhotoPicker (~> 2.1.5)
+  - Masonry
+
+SPEC CHECKSUMS:
+  HXWeiboPhotoPicker: b389ed6a2f854270aa391c55591d0616a519c881
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+
+PODFILE CHECKSUM: e9a53c1c2b5a32217e91356dce9748e8db5cd04e
+
+COCOAPODS: 1.4.0
