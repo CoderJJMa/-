@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NmN-CV-2B5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="NmN-CV-2B5">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,11 +14,14 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="s6q-v0-e0m"/>
+                        <viewControllerLayoutGuide type="bottom" id="Mdn-SF-rLL"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="6RW-iI-g3f"/>
                 </viewController>
@@ -30,6 +33,10 @@
         <scene sceneID="MaV-Qo-Lfe">
             <objects>
                 <viewController id="sR4-JQ-EMU" customClass="AViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pvq-q5-4y7"/>
+                        <viewControllerLayoutGuide type="bottom" id="21s-qN-3Nq"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uHH-jJ-neE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -51,11 +58,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.8862745098" green="0.36862745099999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="MAF-VB-xd0" firstAttribute="top" secondItem="GEL-2Q-UrX" secondAttribute="top" constant="70" id="FmI-D6-els"/>
-                            <constraint firstItem="GEL-2Q-UrX" firstAttribute="trailing" secondItem="MAF-VB-xd0" secondAttribute="trailing" constant="20" id="Kgc-q8-4Qx"/>
-                            <constraint firstItem="MAF-VB-xd0" firstAttribute="leading" secondItem="GEL-2Q-UrX" secondAttribute="leading" constant="20" id="SZK-0c-4jo"/>
+                            <constraint firstItem="MAF-VB-xd0" firstAttribute="top" secondItem="Pvq-q5-4y7" secondAttribute="bottom" constant="70" id="FmI-D6-els"/>
+                            <constraint firstAttribute="trailing" secondItem="MAF-VB-xd0" secondAttribute="trailing" constant="20" id="Kgc-q8-4Qx"/>
+                            <constraint firstItem="MAF-VB-xd0" firstAttribute="leading" secondItem="uHH-jJ-neE" secondAttribute="leading" constant="20" id="SZK-0c-4jo"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="GEL-2Q-UrX"/>
                     </view>
                     <navigationItem key="navigationItem" id="J7A-5J-uhM"/>
                 </viewController>

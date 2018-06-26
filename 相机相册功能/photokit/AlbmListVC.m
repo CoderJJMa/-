@@ -13,6 +13,7 @@
 #import "UIColor+Extension.h"
 #import "CHAlbumModel.h"
 #import "CHPhotoModel.h"
+#import "CHSelectedViews.h"
 
 #define KScreenWidth  [UIScreen mainScreen].bounds.size.width
 #define KScreenHeight  [UIScreen mainScreen].bounds.size.height
@@ -28,6 +29,8 @@
 @property (nonatomic,strong)UIButton *closeBtn;
 
 @property (nonatomic,strong)NSMutableArray *allSelectedPhotos;
+
+@property (nonatomic,strong)CHSelectedViews *selectedView;
 
 @end
 
@@ -160,10 +163,15 @@
     [self.navView addSubview:titleLabel];
 
 
+    self.selectedView = [CHSelectedViews loadView];
+    self.selectedView.frame = CGRectMake(0, KScreenHeight, KScreenWidth, 74);
+    [[UIApplication sharedApplication].keyWindow addSubview:self.selectedView];
+
 }
 
 - (void)closePage{
 
+    self.selectedView.hidden = YES;
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }
@@ -203,14 +211,21 @@
     [cell selectedIndexPath:indexPath model:model photos:self.allSelectedPhotos];
 
 
-    [self.allSelectedPhotos enumerateObjectsUsingBlock:^(CHPhotoModel  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-
-    }];
-
-
 //    [self.allSelectedPhotos enumerateObjectsUsingBlock:^(CHPhotoModel  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        NSLog(@"选中的照片  : %@",obj.fileName);
+//
 //    }];
+
+    if(self.allSelectedPhotos.count > 0){
+        [UIView animateWithDuration:0.3 animations:^{
+            self.selectedView.frame = CGRectMake(0, KScreenHeight - 74, KScreenWidth, 74);
+        }];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContentInsert" object:@1];
+    }else{
+        [UIView animateWithDuration:0.3 animations:^{
+            self.selectedView.frame = CGRectMake(0, KScreenHeight, KScreenWidth, 74);
+        }];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContentInsert" object:@0];
+    }
 
 
 }

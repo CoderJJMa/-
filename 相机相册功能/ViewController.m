@@ -53,6 +53,7 @@
     self.scrollView.delegate = self;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.scrollEnabled = NO;
     [self.view addSubview:self.scrollView];
 
     if (@available(iOS 11.0, *)) {
@@ -127,6 +128,8 @@
 
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showBottomView:) name:@"BottomViewChanged" object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addScript:) name:@"ContentInsert" object:nil];
 
 
 
@@ -206,6 +209,17 @@
         }
         default:
             break;
+    }
+
+}
+
+- (void)addScript:(NSNotification *)notify{
+
+    NSNumber *num = notify.object;
+    if ([num isEqual:@1]) {
+        self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 150, 0);
+    }else{
+        self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     }
 
 }

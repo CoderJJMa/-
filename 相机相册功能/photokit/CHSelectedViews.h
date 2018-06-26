@@ -1,0 +1,28 @@
+//
+//  CHSelectedViews.h
+//  相机相册功能
+//
+//  Created by majianjie on 2018/6/26.
+//  Copyright © 2018年 majianjie. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface CHSelectedViews : UIView
+
+@property (weak, nonatomic) IBOutlet UIView *firstImg;
+
+@property (weak, nonatomic) IBOutlet UIView *secondImg;
+
+@property (weak, nonatomic) IBOutlet UIView *thirdImg;
+
+@property (weak, nonatomic) IBOutlet UIView *fourImg;
+
+@property (weak, nonatomic) IBOutlet UIView *commitView;
+
+@property (weak, nonatomic) IBOutlet UILabel *countLabel;
+
+
++ (instancetype)loadView;
+
+@end
