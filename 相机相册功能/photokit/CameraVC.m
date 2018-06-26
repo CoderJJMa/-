@@ -138,8 +138,9 @@
 {
     // 关闭按钮
     UIButton *btn = [UIButton new];
-    btn.frame = CGRectMake(20, 20, 40, 40);
-    [btn setTitle:@"取消" forState:UIControlStateNormal];
+    btn.frame = CGRectMake(20, 20, 32, 44);
+//    [btn setTitle:@"取消" forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"navbar_close"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(disMiss) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
 
@@ -153,8 +154,8 @@
     [self.photoButton setImage:[UIImage imageNamed:@"phtoto_btn_take"] forState:UIControlStateNormal];
     [self.photoButton addTarget:self action:@selector(shutterCamera)
                forControlEvents:UIControlEventTouchUpInside];
-    self.photoButton.frame = CGRectMake(0, 0, 60, 60);
-    self.photoButton.center = CGPointMake(self.view.bounds.size.width / 2, self.bottomView.frame.size.height / 2);
+    self.photoButton.frame = CGRectMake(0, 0, 70, 70);
+    self.photoButton.center = CGPointMake(self.view.bounds.size.width / 2, self.bottomView.frame.size.height / 2 + 10);
     [self.bottomView addSubview:self.photoButton];
 
     //
@@ -166,9 +167,11 @@
 
     // 切换前后镜头按钮
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftButton setTitle:@"切换" forState:UIControlStateNormal];
+//    [leftButton setTitle:@"切换" forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"phtoto_icon_camera"] forState:UIControlStateNormal];
+
     leftButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    leftButton.frame = CGRectMake(self.view.frame.size.width - 130, 20, 20, 20);
+    leftButton.frame = CGRectMake(self.view.frame.size.width - 50, 30, 32, 44);
     [leftButton sizeToFit];
     [leftButton addTarget:self action:@selector(changeCamera) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:leftButton];
@@ -176,9 +179,12 @@
 
     // 闪光灯按钮
     self.flashButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [ self.flashButton setTitle:@"闪光灯关" forState:UIControlStateNormal];
+//    [ self.flashButton setTitle:@"闪光灯关" forState:UIControlStateNormal];
+    [self.flashButton setImage:[UIImage imageNamed:@"phtoto_icon_lamp_hover"] forState:UIControlStateNormal];
+    [self.flashButton setImage:[UIImage imageNamed:@"phtoto_icon_lamp_normal"] forState:UIControlStateSelected];
+
     self.flashButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.flashButton.frame = CGRectMake(self.view.frame.size.width - 80, 20, 20, 20);
+    self.flashButton.frame = CGRectMake(self.view.frame.size.width - 100, 30, 32, 44);
     [self.flashButton sizeToFit];
     [ self.flashButton addTarget:self action:@selector(FlashOn) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview: self.flashButton];
@@ -275,6 +281,8 @@
 }
 
 - (void)FlashOn{
+
+    self.flashButton.selected = !self.flashButton.selected;
 
     if ([_device lockForConfiguration:nil]) {
         if (_isflashOn) {

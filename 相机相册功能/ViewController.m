@@ -9,9 +9,11 @@
 #import "ViewController.h"
 #import "AlbmListVC.h"
 #import "CameraVC.h"
+#import "UIColor+Extension.h"
 
-#define SelectedColor [UIColor blueColor]
-#define UnSelectedColor [UIColor blackColor]
+
+#define SelectedColor [UIColor colorWithHexString:@"156EC9"]
+#define UnSelectedColor [UIColor colorWithHexString:@"333333"]
 #define SelfHeight  self.view.frame.size.height
 #define SelfWidth  self.view.frame.size.width
 #define BottomHeight 55
@@ -100,7 +102,7 @@
 
     self.leftLine = [[UIView alloc] initWithFrame:CGRectMake(self.takePhotoBtn.frame.origin.x, self.bottomView.frame.size.height - lineHeight, self.takePhotoBtn.frame.size.width, lineHeight)];
     self.leftLine.layer.cornerRadius = self.leftLine.frame.size.height / 2;
-    self.leftLine.backgroundColor = [UIColor blueColor];
+    self.leftLine.backgroundColor = SelectedColor;
     [leftV addSubview:self.leftLine];
     [leftV addSubview:self.takePhotoBtn];
 //    leftV.backgroundColor = [UIColor redColor];
@@ -135,8 +137,8 @@
     [[UIApplication sharedApplication].keyWindow addSubview:self.bottomView2];
 
 
-    [self addLabel:@"返回" frame:0 color:[UIColor lightGrayColor]];
-    [self addLabel:@"确定" frame:1 color:[UIColor blueColor]];
+    [self addLabel:@"返回" frame:0 color:[UIColor colorWithHexString:@"666666"]];
+    [self addLabel:@"确定" frame:1 color:[UIColor colorWithHexString:@"156EC9"]];
     self.bottomView2.hidden = YES;
 
 }
