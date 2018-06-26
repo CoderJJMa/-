@@ -118,25 +118,37 @@
 //    [self.viewController presentViewController:nav animated:YES completion:nil];
 }
 
+- (CGFloat)getTextWidth:(NSString *)text height:(CGFloat)height fontSize:(CGFloat)fontSize {
+    CGSize newSize = [text boundingRectWithSize:CGSizeMake(MAXFLOAT, height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]} context:nil].size;
+
+    return newSize.width;
+}
+
+- (CGFloat)getTextHeight:(NSString *)text width:(CGFloat)width fontSize:(CGFloat)fontSize {
+    CGSize newSize = [text boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize]} context:nil].size;
+
+    return newSize.height;
+}
+
 - (void)showImageHUDText:(NSString *)text {
-//    CGFloat hudW = [HXPhotoTools getTextWidth:text height:15 fontSize:14];
-//    if (hudW > self.frame.size.width - 60) {
-//        hudW = self.frame.size.width - 60;
-//    }
-//    CGFloat hudH = [HXPhotoTools getTextHeight:text width:hudW fontSize:14];
-//    if (hudW < 100) {
-//        hudW = 100;
-//    }
-//    HXHUD *hud = [[HXHUD alloc] initWithFrame:CGRectMake(0, 0, hudW + 20, 110 + hudH - 15) imageName:@"alert_failed_icon@2x.png" text:text];
-//    hud.alpha = 0;
-//    hud.tag = 1008611;
-//    [self addSubview:hud];
-//    hud.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
-//    [UIView animateWithDuration:0.25 animations:^{
-//        hud.alpha = 1;
-//    }];
-//    [UIView cancelPreviousPerformRequestsWithTarget:self];
-//    [self performSelector:@selector(handleGraceTimer) withObject:nil afterDelay:1.5f inModes:@[NSRunLoopCommonModes]];
+    CGFloat hudW = [self getTextWidth:text height:15 fontSize:14];
+    if (hudW > self.frame.size.width - 60) {
+        hudW = self.frame.size.width - 60;
+    }
+    CGFloat hudH = [self getTextHeight:text width:hudW fontSize:14];
+    if (hudW < 100) {
+        hudW = 100;
+    }
+    HXHUD *hud = [[HXHUD alloc] initWithFrame:CGRectMake(0, 0, hudW + 20, 110 + hudH - 15) imageName:@"alert_failed_icon" text:text];
+    hud.alpha = 0;
+    hud.tag = 1008611;
+    [self addSubview:hud];
+    hud.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
+    [UIView animateWithDuration:0.25 animations:^{
+        hud.alpha = 1;
+    }];
+    [UIView cancelPreviousPerformRequestsWithTarget:self];
+    [self performSelector:@selector(handleGraceTimer) withObject:nil afterDelay:1.5f inModes:@[NSRunLoopCommonModes]];
 }
 
 - (void)showLoadingHUDText:(NSString *)text {

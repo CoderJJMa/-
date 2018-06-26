@@ -11,17 +11,11 @@
 @implementation CHPhotoModel
 
 - (void)setAsset:(PHAsset *)asset{
-
     _asset = asset;
-
     if (_asset) {
-
         NSString *filename = [_asset valueForKey:@"filename"];
         self.fileName = filename;
-        NSLog(@"filename:%@",filename);
-
     }
-
 }
 
 @end

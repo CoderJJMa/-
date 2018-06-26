@@ -26,14 +26,10 @@
     return self;
 }
 - (void)setupUI {
+
     [self.contentView addSubview:self.coverView];
-    [self.contentView addSubview:self.albumNameLb];
-    [self.contentView addSubview:self.photoNumberLb];
-    //    [self.contentView addSubview:self.selectNumberBtn];
-}
-
-- (void)cancelRequest{
-
+    [self.contentView addSubview:self.imagev];
+    [self.contentView addSubview:self.selectNumberBtn];
 
 }
 
@@ -46,44 +42,32 @@
     [[PHImageManager defaultManager] requestImageForAsset:_model.asset targetSize:CGSizeMake(self.hx_w * 1.5, self.hx_w * 1.5) contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
 
         dispatch_async(dispatch_get_main_queue(), ^{
-
-            self.coverView.image = result;
-
+            self.imagev.image = result;
         });
     }];
-
-
-//    if (!model.asset) {
-//        model.asset = model.result.lastObject;
-//    }
-//    __weak typeof(self) weakSelf = self;
-//    self.requestID = [HXPhotoTools getImageWithAlbumModel:model size:CGSizeMake(self.hx_w * 1.5, self.hx_w * 1.5) completion:^(UIImage *image, HXAlbumModel *model) {
-//        if (weakSelf.model == model) {
-//            weakSelf.coverView.image = image;
-//        }
-//    }];
-
-//    self.albumNameLb.text = model.albumName;
-//    self.photoNumberLb.text = @(model.result.count).stringValue;
-
-    
 
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     self.coverView.frame = CGRectMake(0, 0, self.hx_w, self.hx_w);
-    self.albumNameLb.frame = CGRectMake(0, self.hx_w + 6, self.hx_w, 14);
-    self.photoNumberLb.frame = CGRectMake(0, CGRectGetMaxY(self.albumNameLb.frame) + 4, self.hx_w, 14);
-    self.selectNumberBtn.hx_size = CGSizeMake(12, 12);
-    self.selectNumberBtn.hx_x = self.hx_w - 5 - self.selectNumberBtn.hx_w;
-    CGFloat margin = (self.hx_h - self.hx_w) / 2 + 3;
-    self.selectNumberBtn.center = CGPointMake(self.selectNumberBtn.center.x, self.hx_w + margin);
+    self.imagev.frame = CGRectMake(0, 0, self.hx_w, self.hx_w);
+
+    self.selectNumberBtn.hx_size =  CGSizeMake(20, 20);
+    self.selectNumberBtn.hx_x = self.hx_w - 20 - 5;
+    self.selectNumberBtn.hx_y = 5;
 }
 
-- (void)dealloc {
-    [self cancelRequest];
+- (void)selectedIndexPath:(NSIndexPath *)indexPath model:(CHPhotoModel *)model{
+
+    NSLog(@"filename : %@   indexPath : %ld",model.fileName,(long)indexPath.row);
+    self.isSelected = !self.isSelected;
+    self.selectNumberBtn.selected = self.isSelected;
+
+    
+
 }
+
 #pragma mark - < cell懒加载 >
 - (UIImageView *)coverView {
     if (!_coverView) {
@@ -95,30 +79,26 @@
     }
     return _coverView;
 }
-- (UILabel *)albumNameLb {
-    if (!_albumNameLb) {
-        _albumNameLb = [[UILabel alloc] init];
-        _albumNameLb.textColor = [UIColor blackColor];
-        _albumNameLb.font = [UIFont systemFontOfSize:13];
+
+- (UIImageView *)imagev {
+    if (!_imagev) {
+        _imagev = [[UIImageView alloc] init];
+        _imagev.layer.masksToBounds = YES;
+        _imagev.layer.cornerRadius = 4;
+        _imagev.contentMode = UIViewContentModeScaleAspectFill;
+        _imagev.clipsToBounds = YES;
     }
-    return _albumNameLb;
+    return _imagev;
 }
-- (UILabel *)photoNumberLb {
-    if (!_photoNumberLb) {
-        _photoNumberLb = [[UILabel alloc] init];
-        _photoNumberLb.textColor = [UIColor lightGrayColor];
-        _photoNumberLb.font = [UIFont systemFontOfSize:13];
-    }
-    return _photoNumberLb;
-}
+
 - (UIButton *)selectNumberBtn {
     if (!_selectNumberBtn) {
         _selectNumberBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _selectNumberBtn.userInteractionEnabled = NO;
         [_selectNumberBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        _selectNumberBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-        //        [_selectNumberBtn setBackgroundColor:self.manager.themeColor];
-        _selectNumberBtn.layer.cornerRadius = 12.f / 2;
+        [_selectNumberBtn setImage:[UIImage imageNamed:@"phtoto_icon_radio"] forState:UIControlStateNormal];
+        [_selectNumberBtn setImage:[UIImage imageNamed:@"phtoto_icon_choose"] forState:UIControlStateSelected];
+        _selectNumberBtn.layer.cornerRadius = _selectNumberBtn.hx_w / 2;
         _selectNumberBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
     }
     return _selectNumberBtn;

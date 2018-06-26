@@ -18,7 +18,7 @@
 #define KScreenHeight  [UIScreen mainScreen].bounds.size.height
 
 
-@interface AlbmListVC()<UICollectionViewDataSource,UICollectionViewDelegate,UIViewControllerPreviewingDelegate>
+@interface AlbmListVC()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (strong, nonatomic) UICollectionViewFlowLayout *flowLayout;
 @property (strong, nonatomic) UICollectionView *collectionView;
@@ -26,6 +26,8 @@
 
 @property (nonatomic,strong)UIView *navView;
 @property (nonatomic,strong)UIButton *closeBtn;
+
+@property (nonatomic,strong)NSMutableArray *allSelectedPhotos;
 
 @end
 
@@ -162,7 +164,7 @@
 
 - (void)closePage{
 
-    NSLog(@"%s",__func__);
+    [self dismissViewControllerAnimated:YES completion:nil];
 
 }
 
@@ -178,9 +180,50 @@
     return cell;
 }
 #pragma mark - < UICollectionViewDelegate >
-- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    [(CHAlbumListCell *)cell cancelRequest];
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    CHPhotoModel *model = self.albumModelArray[indexPath.item];
+    CHAlbumListCell *cell = (CHAlbumListCell *)[collectionView cellForItemAtIndexPath:indexPath];
+
+    if (self.allSelectedPhotos.count >= 4) {
+        if(cell.isSelected){
+            [self.allSelectedPhotos removeObject:model];
+        }else{
+            [self alert];
+            return;
+        }
+    }else{
+        if (cell.isSelected) {
+            [self.allSelectedPhotos removeObject:model];
+        }else{
+            [self.allSelectedPhotos addObject:model];
+        }
+    }
+
+    [cell selectedIndexPath:indexPath model:model];
+
+    [self.allSelectedPhotos enumerateObjectsUsingBlock:^(CHPhotoModel  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSLog(@"选中的照片  : %@",obj.fileName);
+    }];
+
+
 }
+
+- (void)alert{
+
+    UIAlertController *alertV = [UIAlertController alertControllerWithTitle:@"最大数量限制" message:@"最多选择4张" preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleCancel handler:nil];
+    [alertV addAction:ok];
+
+    [self presentViewController:alertV animated:YES completion:nil];
+
+}
+
+#pragma mark - < UICollectionViewDelegate >
+//- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+//
+//}
 
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
@@ -224,6 +267,13 @@
         _flowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
     }
     return _flowLayout;
+}
+
+- (NSMutableArray *)allSelectedPhotos{
+    if (!_allSelectedPhotos) {
+        _allSelectedPhotos = [NSMutableArray array];
+    }
+    return _allSelectedPhotos;
 }
 
 // 懒加载 照片管理类

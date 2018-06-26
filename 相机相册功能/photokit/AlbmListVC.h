@@ -13,6 +13,4 @@
 
 @property (strong, nonatomic) CHPhotoManager *manager;
 
-- (void)directGoPhotoViewController;
-
 @end

@@ -24,7 +24,44 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3893.5999999999999" y="106.59670164917542"/>
+            <point key="canvasLocation" x="4039" y="26"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="MaV-Qo-Lfe">
+            <objects>
+                <viewController id="sR4-JQ-EMU" customClass="AViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uHH-jJ-neE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAF-VB-xd0">
+                                <rect key="frame" x="20" y="134" width="335" height="44"/>
+                                <color key="backgroundColor" red="0.16078431369999999" green="0.74901960779999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Pmn-mm-J6K"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="跳转">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" id="JVt-wT-4NM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.8862745098" green="0.36862745099999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="MAF-VB-xd0" firstAttribute="top" secondItem="GEL-2Q-UrX" secondAttribute="top" constant="70" id="FmI-D6-els"/>
+                            <constraint firstItem="GEL-2Q-UrX" firstAttribute="trailing" secondItem="MAF-VB-xd0" secondAttribute="trailing" constant="20" id="Kgc-q8-4Qx"/>
+                            <constraint firstItem="MAF-VB-xd0" firstAttribute="leading" secondItem="GEL-2Q-UrX" secondAttribute="leading" constant="20" id="SZK-0c-4jo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GEL-2Q-UrX"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="J7A-5J-uhM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O7E-I6-24A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3212" y="103"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TYY-wh-R0x">
@@ -37,12 +74,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="t3Z-IP-8tT"/>
+                        <segue destination="sR4-JQ-EMU" kind="relationship" relationship="rootViewController" id="066-c4-S8p"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xGb-ff-Hc9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2954.4000000000001" y="106.59670164917542"/>
+            <point key="canvasLocation" x="2345" y="397"/>
         </scene>
     </scenes>
 </document>

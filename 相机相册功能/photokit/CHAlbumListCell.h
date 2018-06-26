@@ -14,14 +14,14 @@
 @interface CHAlbumListCell : UICollectionViewCell
 
 @property (strong, nonatomic) CHPhotoModel *model;
+@property (nonatomic,assign)BOOL isSelected;
 
-- (void)cancelRequest ;
+@property (strong, nonatomic) UIImageView *imagev;
 
 @property (strong, nonatomic) UIImageView *coverView;
 @property (strong, nonatomic) UIButton *selectNumberBtn;
-@property (strong, nonatomic) UILabel *albumNameLb;
-@property (strong, nonatomic) UILabel *photoNumberLb;
-@property (assign, nonatomic) PHImageRequestID requestID;
 
+- (void)selectedIndexPath:(NSIndexPath *)indexPath model:(CHPhotoModel *)model;
 
 @end
+
