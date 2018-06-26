@@ -77,8 +77,9 @@
 
     self.bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, SelfHeight - BottomHeight, SelfWidth, BottomHeight)];
     self.bottomView.backgroundColor = [UIColor whiteColor];
-    [[UIApplication sharedApplication].keyWindow addSubview:self.bottomView];
+//    [[UIApplication sharedApplication].keyWindow addSubview:self.bottomView];
 
+    [self.view addSubview:self.bottomView];
 
     CGFloat margin = 20;
     UIView *leftV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SelfWidth / 2 - margin, BottomHeight)];
