@@ -7,8 +7,8 @@
 //
 
 #import "ViewController.h"
-#import "AlbmsView.h"
-#import "CameraView.h"
+#import "AlbmListVC.h"
+#import "CameraVC.h"
 
 #define SelectedColor [UIColor blueColor]
 #define UnSelectedColor [UIColor blackColor]
@@ -18,8 +18,8 @@
 
 @interface ViewController ()<UIScrollViewDelegate>
 
-@property (nonatomic,strong)AlbmsView *albmsView;
-@property (nonatomic,strong)CameraView *takePhtotView;
+@property (nonatomic,strong)AlbmListVC *albmsvc;
+@property (nonatomic,strong)CameraVC *cameravc;
 
 @property (nonatomic,strong)UIScrollView *scrollView;
 
@@ -59,18 +59,18 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
 
-    self.albmsView = [[AlbmsView alloc] init];
-    self.albmsView.view.frame = CGRectMake(SelfWidth, 0, SelfWidth, self.scrollView.frame.size.height);
-    [self.scrollView addSubview:self.albmsView.view];
-    [self addChildViewController:self.albmsView];
-//    [self.albmsView directGoPhotoViewController];
+    self.albmsvc = [[AlbmListVC alloc] init];
+    self.albmsvc.view.frame = CGRectMake(SelfWidth, 0, SelfWidth, self.scrollView.frame.size.height);
+    [self.scrollView addSubview:self.albmsvc.view];
+    [self addChildViewController:self.albmsvc];
+//    [self.albmsvc directGoPhotoViewController];
 
 
 
-    self.takePhtotView = [[CameraView alloc] init];
-    self.takePhtotView.view.frame = CGRectMake(0, 0, SelfWidth, self.scrollView.frame.size.height);
-    [self.scrollView addSubview:self.takePhtotView.view];
-    [self addChildViewController:self.takePhtotView];
+    self.cameravc = [[CameraVC alloc] init];
+    self.cameravc.view.frame = CGRectMake(0, 0, SelfWidth, self.scrollView.frame.size.height);
+    [self.scrollView addSubview:self.cameravc.view];
+    [self addChildViewController:self.cameravc];
 
 
     self.bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, SelfHeight - BottomHeight, SelfWidth, BottomHeight)];

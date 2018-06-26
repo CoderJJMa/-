@@ -10,4 +10,12 @@
 
 @implementation CHPhotoManager
 
+- (instancetype)initWithType:(CHPhotoManagerSelectedType)type{
+
+    _type = type;
+
+    return self;
+
+}
+
 @end

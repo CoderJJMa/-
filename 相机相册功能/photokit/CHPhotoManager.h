@@ -10,7 +10,6 @@
 #import <Photos/Photos.h>
 #import "CHPhotoConfiguration.h"
 
-
 /**
  *  照片选择的管理类, 使用照片选择时必须先懒加载此类,然后赋值给对应的对象
  */

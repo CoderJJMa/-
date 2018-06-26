@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CHPhotoManager.h"
 
-@interface AlbmsView : UIViewController
+@interface AlbmListVC : UIViewController
+
+@property (strong, nonatomic) CHPhotoManager *manager;
 
 - (void)directGoPhotoViewController;
 

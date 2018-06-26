@@ -6,7 +6,7 @@
 //  Copyright © 2018年 majianjie. All rights reserved.
 //
 
-#import "CameraView.h"
+#import "CameraVC.h"
 //导入相机框架
 #import <AVFoundation/AVFoundation.h>
 //将拍摄好的照片写入系统相册中，所以我们在这里还需要导入一个相册需要的头文件iOS8
@@ -16,7 +16,7 @@
 #define KScreenHeight  [UIScreen mainScreen].bounds.size.height
 #define BottomHeight 55
 
-@interface CameraView()
+@interface CameraVC()
 
 //捕获设备，通常是前置摄像头，后置摄像头，麦克风（音频输入）
 @property(nonatomic)AVCaptureDevice *device;
@@ -53,7 +53,7 @@
 @end
 
 
-@implementation CameraView
+@implementation CameraVC
 
 - (instancetype)init{
 
