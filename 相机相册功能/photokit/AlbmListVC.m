@@ -12,6 +12,7 @@
 #import "UIView+Extension.h"
 #import "UIColor+Extension.h"
 #import "CHAlbumModel.h"
+#import "CHPhotoModel.h"
 
 #define KScreenWidth  [UIScreen mainScreen].bounds.size.width
 #define KScreenHeight  [UIScreen mainScreen].bounds.size.height
@@ -50,8 +51,15 @@
     if (self.albumModelArray.count == 0) {
         [self getAlbumModelList:^(CHAlbumModel *firstAlbumModel) {
 
-            NSLog(@"%@",firstAlbumModel);
-            
+            for (NSInteger i = 0; i < firstAlbumModel.result.count; i++) {
+                // 获取一个资源（PHAsset）
+                PHAsset *asset = firstAlbumModel.result[i];
+                CHPhotoModel *model = [CHPhotoModel new];
+                model.asset = asset;
+                [self.albumModelArray addObject:model];
+            }
+
+            [self.collectionView reloadData];
 
         }];
     }
@@ -67,7 +75,7 @@
 
                 // 是否按创建时间排序
                 PHFetchOptions *option = [[PHFetchOptions alloc] init];
-                option.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
+                option.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
                 if (self.manager.type == CHPhotoManagerSelectedTypePhoto) {
                     option.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeImage];
                 }else if (self.manager.type == CHPhotoManagerSelectedTypeVideo) {

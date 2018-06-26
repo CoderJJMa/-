@@ -6,8 +6,13 @@
 //  Copyright © 2018年 majianjie. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <Photos/Photos.h>
 
 @interface CHPhotoModel : NSObject
+
+@property (nonatomic,strong)NSString *fileName;
+
+@property (nonatomic,strong)PHAsset *asset;
 
 @end

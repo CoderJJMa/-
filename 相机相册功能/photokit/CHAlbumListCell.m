@@ -37,9 +37,22 @@
 
 }
 
-- (void)setModel:(CHAlbumModel *)model {
+- (void)setModel:(CHPhotoModel *)model {
 
     _model = model;
+
+    PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
+
+    [[PHImageManager defaultManager] requestImageForAsset:_model.asset targetSize:CGSizeMake(self.hx_w * 1.5, self.hx_w * 1.5) contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+            self.coverView.image = result;
+
+        });
+    }];
+
+
 //    if (!model.asset) {
 //        model.asset = model.result.lastObject;
 //    }
@@ -50,8 +63,11 @@
 //        }
 //    }];
 
-    self.albumNameLb.text = model.albumName;
-    self.photoNumberLb.text = @(model.result.count).stringValue;
+//    self.albumNameLb.text = model.albumName;
+//    self.photoNumberLb.text = @(model.result.count).stringValue;
+
+    
+
 }
 
 - (void)layoutSubviews {

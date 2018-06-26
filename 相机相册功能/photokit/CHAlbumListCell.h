@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "CHAlbumModel.h"
 #import <Photos/Photos.h>
+#import "CHPhotoModel.h"
 
 @interface CHAlbumListCell : UICollectionViewCell
 
-@property (strong, nonatomic) CHAlbumModel *model;
+@property (strong, nonatomic) CHPhotoModel *model;
 
 - (void)cancelRequest ;
 
