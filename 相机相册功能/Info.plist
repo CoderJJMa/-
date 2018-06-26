@@ -47,5 +47,7 @@
 	<string>问问</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>仍然</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

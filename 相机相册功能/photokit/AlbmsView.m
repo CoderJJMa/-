@@ -23,7 +23,7 @@
 - (instancetype)init{
 
     if (self == [super init]) {
-        self.view.backgroundColor = [UIColor yellowColor];
+        self.view.backgroundColor = [UIColor whiteColor];
     }
     return self;
 

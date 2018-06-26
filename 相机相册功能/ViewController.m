@@ -21,8 +21,6 @@
 @property (nonatomic,strong)AlbmsView *albmsView;
 @property (nonatomic,strong)CameraView *takePhtotView;
 
-//@property (nonatomic,strong)MainPagePhotosView *photosView;
-
 @property (nonatomic,strong)UIScrollView *scrollView;
 
 
@@ -44,6 +42,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SelfWidth, self.view.frame.size.height - BottomHeight)];
     self.scrollView.contentSize = CGSizeMake(SelfWidth * 2, self.scrollView.frame.size.height);
     self.scrollView.pagingEnabled = YES;
@@ -53,8 +53,11 @@
     self.scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:self.scrollView];
 
-    self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-
+    if (@available(iOS 11.0, *)) {
+        self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
 
     self.albmsView = [[AlbmsView alloc] init];
     self.albmsView.view.frame = CGRectMake(SelfWidth, 0, SelfWidth, self.scrollView.frame.size.height);
@@ -100,7 +103,7 @@
     self.leftLine.backgroundColor = [UIColor blueColor];
     [leftV addSubview:self.leftLine];
     [leftV addSubview:self.takePhotoBtn];
-
+//    leftV.backgroundColor = [UIColor redColor];
 
     self.albmPhotoBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 15, btnwidth, btnheigh)];
     [self.albmPhotoBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -116,6 +119,8 @@
 
     [rightV addSubview:self.rightLine];
     [rightV addSubview:self.albmPhotoBtn];
+
+//    rightV.backgroundColor = [UIColor redColor];
 
 
     self.navigationController.navigationBar.hidden = YES;
@@ -139,15 +144,6 @@
 - (void)addLabel:(NSString *)content frame:(int)frame color:(UIColor *)color{
 
     UILabel *backLabel = [[UILabel alloc] init];
-
-//    CGFloat margin = 20;
-//    UIView *leftV = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SelfWidth / 2 - margin, BottomHeight)];
-//    UIView *rightV = [[UIView alloc] initWithFrame:CGRectMake(SelfWidth / 2 + margin, 0, SelfWidth / 2 - margin, BottomHeight)];
-//    [self.bottomView2 addSubview:leftV];
-//    [self.bottomView2 addSubview:rightV];
-//
-//    CGFloat btnwidth = 40;
-//    CGFloat btnheigh = 40;
 
     if (frame) {
         backLabel.frame = CGRectMake( SelfWidth / 2 + 50, 5, 40, 20);
