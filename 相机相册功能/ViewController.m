@@ -44,9 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-
-
-    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 20, SelfWidth, self.view.frame.size.height - BottomHeight - 20)];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SelfWidth, self.view.frame.size.height - BottomHeight)];
     self.scrollView.contentSize = CGSizeMake(SelfWidth * 2, self.scrollView.frame.size.height);
     self.scrollView.pagingEnabled = YES;
     self.scrollView.bounces = NO;
@@ -55,9 +53,11 @@
     self.scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:self.scrollView];
 
+    self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+
 
     self.albmsView = [[AlbmsView alloc] init];
-    self.albmsView.view.frame = CGRectMake(SelfWidth, 0, SelfWidth, SelfHeight);
+    self.albmsView.view.frame = CGRectMake(SelfWidth, 0, SelfWidth, self.scrollView.frame.size.height);
     [self.scrollView addSubview:self.albmsView.view];
     [self addChildViewController:self.albmsView];
 //    [self.albmsView directGoPhotoViewController];
@@ -65,7 +65,7 @@
 
 
     self.takePhtotView = [[CameraView alloc] init];
-    self.takePhtotView.view.frame = CGRectMake(0, 0, SelfWidth, SelfHeight);
+    self.takePhtotView.view.frame = CGRectMake(0, 0, SelfWidth, self.scrollView.frame.size.height);
     [self.scrollView addSubview:self.takePhtotView.view];
     [self addChildViewController:self.takePhtotView];
 
@@ -98,7 +98,6 @@
     self.leftLine = [[UIView alloc] initWithFrame:CGRectMake(self.takePhotoBtn.frame.origin.x, self.bottomView.frame.size.height - lineHeight, self.takePhotoBtn.frame.size.width, lineHeight)];
     self.leftLine.layer.cornerRadius = self.leftLine.frame.size.height / 2;
     self.leftLine.backgroundColor = [UIColor blueColor];
-//    leftV.backgroundColor = [UIColor blueColor];
     [leftV addSubview:self.leftLine];
     [leftV addSubview:self.takePhotoBtn];
 
@@ -114,7 +113,7 @@
     self.rightLine.layer.cornerRadius = self.leftLine.frame.size.height / 2;
     self.rightLine.backgroundColor = [UIColor blueColor];
     self.rightLine.hidden = YES;
-//    rightV.backgroundColor = [UIColor redColor];
+
     [rightV addSubview:self.rightLine];
     [rightV addSubview:self.albmPhotoBtn];
 

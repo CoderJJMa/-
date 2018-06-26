@@ -106,7 +106,7 @@
 
     //使用self.session，初始化预览层，self.session负责驱动input进行信息的采集，layer负责把图像渲染显示
     self.previewLayer = [[AVCaptureVideoPreviewLayer alloc]initWithSession:self.session];
-    self.previewLayer.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - 60 - 130);
+    self.previewLayer.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - 60 - 125);
     self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     [self.view.layer addSublayer:self.previewLayer];
 
@@ -144,7 +144,7 @@
     [self.view addSubview:btn];
 
     // 底部的整体的view
-    self.bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 60 - 130, self.view.frame.size.width, 130)];
+    self.bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 60 - 125, self.view.frame.size.width, 130)];
     self.bottomView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.bottomView];
 
@@ -187,7 +187,7 @@
 
 
     // 拍完照后显示的 view
-    self.takeFinishView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 60 - 130, self.view.frame.size.width, 130)];
+    self.takeFinishView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 60 - 125, self.view.frame.size.width, 130)];
     self.takeFinishView.backgroundColor = [UIColor whiteColor];
     self.takeFinishView.hidden = YES;
     [self.view addSubview:self.takeFinishView];
@@ -386,7 +386,7 @@
         UIImageView *imageV = [[UIImageView alloc] initWithImage:image];
         imageV.tag = 1024;
         imageV.contentMode = UIViewContentModeScaleToFill;
-        imageV.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - 60 - 130);
+        imageV.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - 60 - 125);
         [self.view addSubview:imageV];
 
         self.takeFinishView.hidden = NO;
