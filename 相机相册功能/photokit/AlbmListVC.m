@@ -10,7 +10,7 @@
 #import "CHAlbumModel.h"
 #import "CHAlbumListCell.h"
 #import "UIView+Extension.h"
-
+#import "UIColor+Extension.h"
 
 #define KScreenWidth  [UIScreen mainScreen].bounds.size.width
 #define KScreenHeight  [UIScreen mainScreen].bounds.size.height
@@ -23,6 +23,7 @@
 @property (strong, nonatomic) NSMutableArray *albumModelArray;
 
 @property (nonatomic,strong)UIView *navView;
+@property (nonatomic,strong)UIButton *closeBtn;
 
 @end
 
@@ -43,11 +44,40 @@
 
     [super viewDidLoad];
 
-    self.navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 64)];
-    self.navView.backgroundColor = [UIColor blueColor];
-    [self.view addSubview:self.navView];
+    [self configTitle];
 
     [self.view addSubview:self.collectionView];
+
+}
+
+- (void)configTitle{
+
+    self.navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 64)];
+    self.navView.backgroundColor = [UIColor colorWithHexString:@"2089EB"];
+    [self.view addSubview:self.navView];
+
+
+    self.closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.navView.frame.size.width - 15 - 32, 20, 32, 44)];
+    [self.closeBtn setImage:[UIImage imageNamed:@"navbar_close"] forState:UIControlStateNormal];
+    [self.closeBtn addTarget:self action:@selector(closePage) forControlEvents:UIControlEventTouchUpInside];
+    [self.navView addSubview:self.closeBtn];
+
+
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 80, 40)];
+    titleLabel.text = @"所有照片";
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textAlignment  = NSTextAlignmentCenter;
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:18];
+    titleLabel.center = CGPointMake(self.navView.center.x , self.navView.center.y + 10);
+    [self.navView addSubview:titleLabel];
+
+
+}
+
+- (void)closePage{
+
+    NSLog(@"%s",__func__);
 
 }
 

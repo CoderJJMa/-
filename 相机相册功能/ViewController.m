@@ -105,7 +105,6 @@
     self.leftLine.backgroundColor = SelectedColor;
     [leftV addSubview:self.leftLine];
     [leftV addSubview:self.takePhotoBtn];
-//    leftV.backgroundColor = [UIColor redColor];
 
     self.albmPhotoBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 15, btnwidth, btnheigh)];
     [self.albmPhotoBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -116,13 +115,11 @@
 
     self.rightLine = [[UIView alloc] initWithFrame:CGRectMake(self.albmPhotoBtn.frame.origin.x, self.bottomView.frame.size.height - lineHeight , self.albmPhotoBtn.frame.size.width, lineHeight)];
     self.rightLine.layer.cornerRadius = self.leftLine.frame.size.height / 2;
-    self.rightLine.backgroundColor = [UIColor blueColor];
+    self.rightLine.backgroundColor = SelectedColor;
     self.rightLine.hidden = YES;
 
     [rightV addSubview:self.rightLine];
     [rightV addSubview:self.albmPhotoBtn];
-
-//    rightV.backgroundColor = [UIColor redColor];
 
 
     self.navigationController.navigationBar.hidden = YES;
