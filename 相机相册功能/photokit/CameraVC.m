@@ -286,17 +286,14 @@
 
     if ([_device lockForConfiguration:nil]) {
         if (_isflashOn) {
-
-            if (_device.torchMode == AVCaptureFlashModeOff) {
-                _device.torchMode =AVCaptureFlashModeOff;
+            if ([_device isFlashModeSupported:AVCaptureFlashModeOff]) {
+                [_device setFlashMode:AVCaptureFlashModeOff];
                 _isflashOn = NO;
                 [_flashButton setTitle:@"闪光灯关" forState:UIControlStateNormal];
             }
         }else{
-            if (_device.torchMode == AVCaptureFlashModeOn) {
-//                [_device setFlashMode:AVCaptureFlashModeOn];
-                _device.torchMode =AVCaptureFlashModeOn;
-
+            if ([_device isFlashModeSupported:AVCaptureFlashModeOn]) {
+                [_device setFlashMode:AVCaptureFlashModeOn];
                 _isflashOn = YES;
                 [_flashButton setTitle:@"闪光灯开" forState:UIControlStateNormal];
             }
