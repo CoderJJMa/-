@@ -240,6 +240,9 @@
                 });
             }];
 
+            self.selectedView.secondImg.hidden = YES;
+            self.selectedView.thirdImg.hidden = YES;
+            self.selectedView.fourImg.hidden = YES;
 
         }else if (self.allSelectedPhotos.count == 2){
 
@@ -264,6 +267,8 @@
                 });
             }];
 
+            self.selectedView.thirdImg.hidden = YES;
+            self.selectedView.fourImg.hidden = YES;
 
         }else if (self.allSelectedPhotos.count == 3){
 
@@ -297,6 +302,7 @@
                 });
             }];
 
+            self.selectedView.fourImg.hidden = YES;
 
         }else if (self.allSelectedPhotos.count == 4){
 
