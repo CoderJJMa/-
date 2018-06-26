@@ -200,11 +200,17 @@
         }
     }
 
-    [cell selectedIndexPath:indexPath model:model];
+    [cell selectedIndexPath:indexPath model:model photos:self.allSelectedPhotos];
+
 
     [self.allSelectedPhotos enumerateObjectsUsingBlock:^(CHPhotoModel  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        NSLog(@"选中的照片  : %@",obj.fileName);
+
     }];
+
+
+//    [self.allSelectedPhotos enumerateObjectsUsingBlock:^(CHPhotoModel  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSLog(@"选中的照片  : %@",obj.fileName);
+//    }];
 
 
 }

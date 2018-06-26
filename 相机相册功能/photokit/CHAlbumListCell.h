@@ -21,7 +21,7 @@
 @property (strong, nonatomic) UIImageView *coverView;
 @property (strong, nonatomic) UIButton *selectNumberBtn;
 
-- (void)selectedIndexPath:(NSIndexPath *)indexPath model:(CHPhotoModel *)model;
+- (void)selectedIndexPath:(NSIndexPath *)indexPath model:(CHPhotoModel *)model photos:(NSMutableArray *)photos;
 
 @end
 

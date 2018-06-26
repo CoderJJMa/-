@@ -27,8 +27,9 @@
 }
 - (void)setupUI {
 
-    [self.contentView addSubview:self.coverView];
     [self.contentView addSubview:self.imagev];
+    [self.contentView addSubview:self.coverView];
+    self.coverView.hidden = YES;
     [self.contentView addSubview:self.selectNumberBtn];
 
 }
@@ -58,13 +59,13 @@
     self.selectNumberBtn.hx_y = 5;
 }
 
-- (void)selectedIndexPath:(NSIndexPath *)indexPath model:(CHPhotoModel *)model{
+- (void)selectedIndexPath:(NSIndexPath *)indexPath model:(CHPhotoModel *)model photos:(NSMutableArray *)photos{
 
     NSLog(@"filename : %@   indexPath : %ld",model.fileName,(long)indexPath.row);
     self.isSelected = !self.isSelected;
     self.selectNumberBtn.selected = self.isSelected;
 
-    
+    self.coverView.hidden = !self.isSelected;
 
 }
 
@@ -74,6 +75,7 @@
         _coverView = [[UIImageView alloc] init];
         _coverView.layer.masksToBounds = YES;
         _coverView.layer.cornerRadius = 4;
+        _coverView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.7];
         _coverView.contentMode = UIViewContentModeScaleAspectFill;
         _coverView.clipsToBounds = YES;
     }
