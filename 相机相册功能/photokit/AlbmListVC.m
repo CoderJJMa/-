@@ -51,6 +51,7 @@
 
     [self configTitle];
 
+
     [self.view addSubview:self.collectionView];
 
 }
@@ -74,6 +75,16 @@
 
         }];
     }
+
+//    if(self.allSelectedPhotos.count > 0){
+//        [UIView animateWithDuration:0.3 animations:^{
+//            self.selectedView.frame = CGRectMake(0, KScreenHeight - 74, KScreenWidth, 74);
+//        }];
+//    }else{
+//        [UIView animateWithDuration:0.3 animations:^{
+//            self.selectedView.frame = CGRectMake(0, KScreenHeight, KScreenWidth, 74);
+//        }];
+//    }
 
 }
 
@@ -292,12 +303,10 @@
         [UIView animateWithDuration:0.3 animations:^{
             self.selectedView.frame = CGRectMake(0, KScreenHeight - 74, KScreenWidth, 74);
         }];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContentInsert" object:@1];
     }else{
         [UIView animateWithDuration:0.3 animations:^{
             self.selectedView.frame = CGRectMake(0, KScreenHeight, KScreenWidth, 74);
         }];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContentInsert" object:@0];
     }
 
 }

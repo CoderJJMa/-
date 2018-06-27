@@ -132,9 +132,6 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showBottomView:) name:@"BottomViewChanged" object:nil];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addScript:) name:@"ContentInsert" object:nil];
-
-
 
     self.bottomView2 = [[UIView alloc] initWithFrame:CGRectMake(0, SelfHeight - BottomHeight, SelfWidth, BottomHeight)];
     self.bottomView2.backgroundColor = [UIColor whiteColor];
@@ -212,17 +209,6 @@
         }
         default:
             break;
-    }
-
-}
-
-- (void)addScript:(NSNotification *)notify{
-
-    NSNumber *num = notify.object;
-    if ([num isEqual:@1]) {
-        self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 150, 0);
-    }else{
-        self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     }
 
 }
