@@ -403,7 +403,7 @@
         self.bottomView.hidden = YES;
 
         [[NSNotificationCenter defaultCenter] postNotificationName:@"BottomViewChanged" object:@1];
-
+        
     }
 
 }

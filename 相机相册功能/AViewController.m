@@ -27,20 +27,13 @@
 
     _selectedPhotos = [NSMutableArray array];
 
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-
-    [super viewWillAppear:animated];
-
-    self.navigationController.navigationBar.hidden = YES;
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivePhotos:) name:@"SelectedPhotos" object:nil];
-
     self.measurePhotoView = [MeasureResultPhotosView loadView];
     self.measurePhotoView.frame = CGRectMake(12, 80, self.view.frame.size.width - 24, 72);
     [self.view addSubview:self.measurePhotoView];
 
+    self.navigationController.navigationBar.hidden = YES;
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivePhotos:) name:@"SelectedPhotos" object:nil];
 
 }
 

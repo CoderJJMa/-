@@ -146,8 +146,11 @@
 
     if (isSendMessage) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"SelectedPhotos" object:self.allSelectedPhotos];
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
     }
-    self.selectedView.hidden = YES;
+    [UIView animateWithDuration:0.1 animations:^{
+        self.selectedView.frame = CGRectMake(0, KScreenHeight, KScreenWidth, 74);
+    }];
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }
@@ -402,10 +405,6 @@
         _albumModelArray = [NSMutableArray array];
     }
     return _albumModelArray;
-}
-
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
