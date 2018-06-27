@@ -36,7 +36,7 @@
 
     UINib * nib = [UINib nibWithNibName:@"CHSelectedViews" bundle:nil];
     CHSelectedViews * view = [nib instantiateWithOwner:nib options:nil].firstObject;
-    [[UIApplication sharedApplication].keyWindow addSubview:view];
+//    [[UIApplication sharedApplication].keyWindow addSubview:view];
     return view;
 
 }

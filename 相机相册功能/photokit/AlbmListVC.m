@@ -53,6 +53,8 @@
 
     [super viewDidAppear:animated];
 
+    self.allSelectedPhotos = self.manager.localImageList;
+
     if (self.albumModelArray.count == 0) {
         [self getAlbumModelList:^(CHAlbumModel *firstAlbumModel) {
 
@@ -61,7 +63,7 @@
                 PHAsset *asset = firstAlbumModel.result[i];
                 CHPhotoModel *model = [CHPhotoModel new];
                 model.asset = asset;
-                [self.manager.localImageList addObject:model];
+                [self.albumModelArray addObject:model];
             }
 
             [self.collectionView reloadData];
@@ -69,7 +71,6 @@
         }];
     }
 
-    self.albumModelArray = self.manager.localImageList;
 }
 
 - (void)getAlbumModelList:(void(^)(CHAlbumModel *firstAlbumModel))firstModel {
@@ -173,15 +174,15 @@
 
     self.selectedView.commit = ^{
 
-            [WeakSelf.allSelectedPhotos enumerateObjectsUsingBlock:^(CHPhotoModel  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-
-                CHPhotoModel *model = obj;
-                if (model && model.asset) {
-                    NSString *filename = [model.asset valueForKey:@"filename"];
-                    NSLog(@"选中的图片 : %@",filename);
-                }
-
-            }];
+//            [WeakSelf.allSelectedPhotos enumerateObjectsUsingBlock:^(CHPhotoModel  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//
+//                CHPhotoModel *model = obj;
+//                if (model && model.asset) {
+//                    NSString *filename = [model.asset valueForKey:@"filename"];
+//                    NSLog(@"选中的图片 : %@",filename);
+//                }
+//
+//            }];
 
         [WeakSelf closePage];
 
@@ -192,11 +193,7 @@
         if (WeakSelf.allSelectedPhotos.count > 0) {
 
             CHPhotoModel *model = WeakSelf.allSelectedPhotos[index];
-
-
             CHAlbumListCell *cell = (CHAlbumListCell *)[WeakSelf.collectionView cellForItemAtIndexPath:model.indexPath];
-
-//            NSLog(@"删除 : %ld",model.indexPath.row);
 
             cell.isSelected = NO;
             cell.coverView.hidden = YES;
@@ -205,17 +202,18 @@
 
             [WeakSelf.allSelectedPhotos removeObjectAtIndex:index];
             [WeakSelf deleteAddUI];
-
         }
-
     };
 
 }
 
 - (void)closePage{
 
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SelectedPhotos" object:self.allSelectedPhotos];
     self.selectedView.hidden = YES;
     [self dismissViewControllerAnimated:YES completion:nil];
+
+
 
 }
 
@@ -248,7 +246,6 @@
             [self.allSelectedPhotos removeObject:model];
         }else{
             model.indexPath = indexPath;
-//            NSLog(@"选中   : %ld",indexPath.row);
             [self.allSelectedPhotos addObject:model];
         }
     }
