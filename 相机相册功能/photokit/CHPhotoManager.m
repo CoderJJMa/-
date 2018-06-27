@@ -33,4 +33,18 @@
     return _localImageList;
 }
 
++ (void)getPhotoForPHAsset:(PHAsset *)asset size:(CGSize)size completion:(void(^)(UIImage *image,NSDictionary *info))completion {
+    PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
+    option.resizeMode = PHImageRequestOptionsResizeModeFast;
+
+    [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable image, NSDictionary * _Nullable info) {
+
+        if (completion && image) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(image,info);
+            });
+        }
+    }];
+}
+
 @end

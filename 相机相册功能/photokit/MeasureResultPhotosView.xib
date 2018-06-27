@@ -35,7 +35,7 @@
                             <state key="normal" image="phtoto_icon_close"/>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="wYI-Vk-al4" firstAttribute="centerY" secondItem="ama-Mg-SpH" secondAttribute="centerY" id="Dmk-Fp-TGm"/>
                         <constraint firstItem="wYI-Vk-al4" firstAttribute="centerX" secondItem="ama-Mg-SpH" secondAttribute="centerX" id="KfF-mn-TJE"/>
@@ -63,7 +63,7 @@
                             <state key="normal" image="phtoto_icon_close"/>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="wEe-eW-4jf" firstAttribute="centerY" secondItem="498-6F-M8q" secondAttribute="centerY" id="4zl-gQ-X3K"/>
                         <constraint firstAttribute="trailing" secondItem="LKw-r9-WJ4" secondAttribute="trailing" id="RAh-hj-q5F"/>
@@ -89,7 +89,7 @@
                             <state key="normal" image="phtoto_icon_close"/>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="0A0-L5-AJY" firstAttribute="centerY" secondItem="Kmp-uU-JbD" secondAttribute="centerY" id="K8K-qj-VQx"/>
                         <constraint firstAttribute="trailing" secondItem="CO8-ck-vaa" secondAttribute="trailing" id="cfE-Pr-LDD"/>
@@ -115,7 +115,7 @@
                             <state key="normal" image="phtoto_icon_close"/>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="dCk-Hh-ZpH" secondAttribute="trailing" id="AEZ-Vb-7ey"/>
                         <constraint firstItem="HKQ-sW-PIg" firstAttribute="centerY" secondItem="ArL-VL-N5p" secondAttribute="centerY" id="LrL-d3-BLn"/>
@@ -124,7 +124,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="ArL-VL-N5p" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="D5h-Tj-rUr"/>
                 <constraint firstItem="ama-Mg-SpH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DeA-4n-Lnu"/>

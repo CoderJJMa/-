@@ -24,7 +24,6 @@ typedef enum : NSUInteger {
 
 @interface CHPhotoManager : NSObject
 
-
 /**
  显示的类型 图片 / 视频  / 图片和视频
  */
@@ -36,14 +35,6 @@ typedef enum : NSUInteger {
 - (instancetype)initWithType:(CHPhotoManagerSelectedType)type;
 
 /**
- 获取系统所有相册
-
- @param albums 相册集合
- */
-//- (void)getAllPhotoAlbums:(void(^)(CHAlbumModel *firstAlbumModel))firstModel albums:(void(^)(NSArray *albums))albums isFirst:(BOOL)isFirst;
-
-
-/**
  配置信息
  */
 @property (strong, nonatomic) CHPhotoConfiguration *configuration;
@@ -52,6 +43,12 @@ typedef enum : NSUInteger {
  *  本地图片数组 <UIImage *> 装的是UIImage对象 - 已设置为选中状态
  */
 @property (copy, nonatomic) NSMutableArray *localImageList;
+
+
++ (void)getPhotoForPHAsset:(PHAsset *)asset size:(CGSize)size completion:(void(^)(UIImage *image,NSDictionary *info))completion;
+
+
+
 
 
 @end

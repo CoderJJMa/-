@@ -14,8 +14,6 @@
 
     [super awakeFromNib];
 
-    self.backgroundColor = [UIColor whiteColor];
-
 }
 
 + (instancetype)loadView{

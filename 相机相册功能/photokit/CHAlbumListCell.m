@@ -8,6 +8,7 @@
 
 #import "CHAlbumListCell.h"
 #import "UIView+Extension.h"
+#import "CHPhotoManager.h"
 
 @interface CHAlbumListCell()
 
@@ -39,13 +40,8 @@
     _model = model;
     _model.size = CGSizeMake(self.hx_w * 1.5, self.hx_w * 1.5);
 
-    PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
-
-    [[PHImageManager defaultManager] requestImageForAsset:_model.asset targetSize:CGSizeMake(self.hx_w * 1.5, self.hx_w * 1.5) contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.imagev.image = result;
-        });
+    [CHPhotoManager getPhotoForPHAsset:_model.asset size:CGSizeMake(self.hx_w * 1.5, self.hx_w * 1.5) completion:^(UIImage *image, NSDictionary *info) {
+        self.imagev.image = image;
     }];
 
 }

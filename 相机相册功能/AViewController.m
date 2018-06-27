@@ -10,6 +10,7 @@
 #import "MainVC.h"
 #import "CHPhotoModel.h"
 #import "MeasureResultPhotosView.h"
+#import "CHPhotoManager.h"
 
 @interface AViewController ()
 
@@ -61,133 +62,78 @@
 
 - (void)updateUI{
 
-    PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
-
-
     dispatch_async(dispatch_get_main_queue(), ^{
 
+        self.measurePhotoView.firstImg.hidden = NO;
+        self.measurePhotoView.secondImg.hidden = self.selectedPhotos.count == 0;
+        self.measurePhotoView.thirdImg.hidden = self.selectedPhotos.count == 1 || self.selectedPhotos.count == 0;
+        self.measurePhotoView.fourthImg.hidden = self.selectedPhotos.count == 1 || self.selectedPhotos.count == 0 || self.selectedPhotos.count == 2;
+
+
+        CGSize size = self.measurePhotoView.firstImg.frame.size;
 
         switch (self.selectedPhotos.count) {
             case 0:
             {
-                self.measurePhotoView.firstImg.hidden = NO;
-                self.measurePhotoView.secondImg.hidden = YES;
-                self.measurePhotoView.thirdImg.hidden = YES;
-                self.measurePhotoView.fourthImg.hidden = YES;
                 break;
             }
             case 1:{
-                self.measurePhotoView.firstImg.hidden = NO;
                 CHPhotoModel *model = self.selectedPhotos[0];
-
-                [[PHImageManager defaultManager] requestImageForAsset:model.asset targetSize:model.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        self.measurePhotoView.firstImg.image = result;
-                    });
+                [CHPhotoManager getPhotoForPHAsset:model.asset size:size completion:^(UIImage *image, NSDictionary *info) {
+                   self.measurePhotoView.firstImg.image = image;
                 }];
-
-                self.measurePhotoView.secondImg.hidden = NO;
-                self.measurePhotoView.thirdImg.hidden = YES;
-                self.measurePhotoView.fourthImg.hidden = YES;
 
                 break;
             }
             case 2:{
-
-                self.measurePhotoView.firstImg.hidden = NO;
                 CHPhotoModel *model = self.selectedPhotos[0];
-
-                [[PHImageManager defaultManager] requestImageForAsset:model.asset targetSize:model.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        self.measurePhotoView.firstImg.image = result;
-                    });
+                [CHPhotoManager getPhotoForPHAsset:model.asset size:size completion:^(UIImage *image, NSDictionary *info) {
+                    self.measurePhotoView.firstImg.image = image;
                 }];
 
-                self.measurePhotoView.secondImg.hidden = NO;
                 CHPhotoModel *model2 = self.selectedPhotos[1];
-
-                [[PHImageManager defaultManager] requestImageForAsset:model2.asset targetSize:model2.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        self.measurePhotoView.secondImg.image = result;
-                    });
+                [CHPhotoManager getPhotoForPHAsset:model2.asset size:size completion:^(UIImage *image, NSDictionary *info) {
+                    self.measurePhotoView.secondImg.image = image;
                 }];
-                self.measurePhotoView.thirdImg.hidden = NO;
-                self.measurePhotoView.fourthImg.hidden = YES;
-
                 break;
             }
             case 3:{
-
-                self.measurePhotoView.firstImg.hidden = NO;
                 CHPhotoModel *model = self.selectedPhotos[0];
-
-                [[PHImageManager defaultManager] requestImageForAsset:model.asset targetSize:model.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        self.measurePhotoView.firstImg.image = result;
-                    });
+                [CHPhotoManager getPhotoForPHAsset:model.asset size:size completion:^(UIImage *image, NSDictionary *info) {
+                    self.measurePhotoView.firstImg.image = image;
                 }];
 
-                self.measurePhotoView.secondImg.hidden = NO;
                 CHPhotoModel *model2 = self.selectedPhotos[1];
-
-                [[PHImageManager defaultManager] requestImageForAsset:model2.asset targetSize:model2.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        self.measurePhotoView.secondImg.image = result;
-                    });
+                [CHPhotoManager getPhotoForPHAsset:model2.asset size:size completion:^(UIImage *image, NSDictionary *info) {
+                    self.measurePhotoView.secondImg.image = image;
                 }];
 
-
-                self.measurePhotoView.thirdImg.hidden = NO;
                 CHPhotoModel *model3 = self.selectedPhotos[2];
-
-                [[PHImageManager defaultManager] requestImageForAsset:model3.asset targetSize:model3.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        self.measurePhotoView.thirdImg.image = result;
-                    });
+                [CHPhotoManager getPhotoForPHAsset:model3.asset size:size completion:^(UIImage *image, NSDictionary *info) {
+                    self.measurePhotoView.thirdImg.image = image;
                 }];
-
-                self.measurePhotoView.fourthImg.hidden = NO;
-
                 break;
             }
             case 4:{
-                self.measurePhotoView.firstImg.hidden = NO;
                 CHPhotoModel *model = self.selectedPhotos[0];
-
-                [[PHImageManager defaultManager] requestImageForAsset:model.asset targetSize:model.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        self.measurePhotoView.firstImg.image = result;
-                    });
+                [CHPhotoManager getPhotoForPHAsset:model.asset size:size completion:^(UIImage *image, NSDictionary *info) {
+                    self.measurePhotoView.firstImg.image = image;
                 }];
 
-                self.measurePhotoView.secondImg.hidden = NO;
                 CHPhotoModel *model2 = self.selectedPhotos[1];
-
-                [[PHImageManager defaultManager] requestImageForAsset:model2.asset targetSize:model2.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        self.measurePhotoView.secondImg.image = result;
-                    });
+                [CHPhotoManager getPhotoForPHAsset:model2.asset size:size completion:^(UIImage *image, NSDictionary *info) {
+                    self.measurePhotoView.secondImg.image = image;
                 }];
 
-
-                self.measurePhotoView.thirdImg.hidden = NO;
                 CHPhotoModel *model3 = self.selectedPhotos[2];
-
-                [[PHImageManager defaultManager] requestImageForAsset:model3.asset targetSize:model3.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        self.measurePhotoView.thirdImg.image = result;
-                    });
+                [CHPhotoManager getPhotoForPHAsset:model3.asset size:size completion:^(UIImage *image, NSDictionary *info) {
+                    self.measurePhotoView.thirdImg.image = image;
                 }];
 
-                self.measurePhotoView.fourthImg.hidden = NO;
                 CHPhotoModel *model4 = self.selectedPhotos[3];
-
-                [[PHImageManager defaultManager] requestImageForAsset:model4.asset targetSize:model4.size contentMode:PHImageContentModeAspectFill options:option resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        self.measurePhotoView.fourthImg.image = result;
-                    });
+                [CHPhotoManager getPhotoForPHAsset:model4.asset size:size completion:^(UIImage *image, NSDictionary *info) {
+                    self.measurePhotoView.fourthImg.image = image;
                 }];
-
 
                 break;
             }
@@ -209,7 +155,6 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:targetVC];
     CATransition *animation = [CATransition animation];
     animation.duration = 0.3;
-    // `linear', `easeIn', `easeOut' `easeInEaseOut' and `default'
     animation.timingFunction = [CAMediaTimingFunction functionWithName:@"linear"];
     animation.type = kCATransitionFade;
     animation.subtype = kCATransitionFromBottom;
