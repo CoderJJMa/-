@@ -6,7 +6,7 @@
 //  Copyright © 2018年 majianjie. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MainVC.h"
 #import "AlbmListVC.h"
 #import "CameraVC.h"
 #import "UIColor+Extension.h"
@@ -18,7 +18,7 @@
 #define SelfWidth  self.view.frame.size.width
 #define BottomHeight 55
 
-@interface ViewController ()<UIScrollViewDelegate>
+@interface MainVC ()<UIScrollViewDelegate>
 
 @property (nonatomic,strong)AlbmListVC *albmsvc;
 @property (nonatomic,strong)CameraVC *cameravc;
@@ -38,7 +38,7 @@
 
 @end
 
-@implementation ViewController
+@implementation MainVC
 
 
 - (void)viewDidLoad {

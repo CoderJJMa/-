@@ -7,7 +7,7 @@
 //
 
 #import "AViewController.h"
-#import "ViewController.h"
+#import "MainVC.h"
 
 @interface AViewController ()
 
@@ -18,7 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+}
 
+- (void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+
+    self.navigationController.navigationBar.hidden = YES;
 
 }
 
@@ -40,7 +46,7 @@
 //    [self presentViewController:nav animated:YES completion:nil];
 
 
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[ViewController new]];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[MainVC new]];
     CATransition *animation = [CATransition animation];
     animation.duration = 1.0;
     // `linear', `easeIn', `easeOut' `easeInEaseOut' and `default'

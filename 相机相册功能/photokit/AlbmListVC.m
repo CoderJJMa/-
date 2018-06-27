@@ -196,7 +196,7 @@
 
             CHAlbumListCell *cell = (CHAlbumListCell *)[WeakSelf.collectionView cellForItemAtIndexPath:model.indexPath];
 
-            NSLog(@"删除 : %ld",model.indexPath.row);
+//            NSLog(@"删除 : %ld",model.indexPath.row);
 
             cell.isSelected = NO;
             cell.coverView.hidden = YES;
@@ -248,7 +248,7 @@
             [self.allSelectedPhotos removeObject:model];
         }else{
             model.indexPath = indexPath;
-            NSLog(@"选中   : %ld",indexPath.row);
+//            NSLog(@"选中   : %ld",indexPath.row);
             [self.allSelectedPhotos addObject:model];
         }
     }
