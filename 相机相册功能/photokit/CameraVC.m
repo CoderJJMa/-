@@ -18,6 +18,8 @@
 #define KScreenHeight  [UIScreen mainScreen].bounds.size.height
 #define BottomHeight 55
 
+#define Tag 1024
+
 @interface CameraVC()
 
 //捕获设备，通常是前置摄像头，后置摄像头，麦克风（音频输入）
@@ -391,7 +393,7 @@
     if (image) {
 
         UIImageView *imageV = [[UIImageView alloc] initWithImage:image];
-        imageV.tag = 1024;
+        imageV.tag = Tag;
         imageV.contentMode = UIViewContentModeScaleToFill;
         imageV.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - 60 - 125);
         [self.view addSubview:imageV];
@@ -434,7 +436,7 @@
 
 - (void)back{
 
-    UIImageView *image = [self.view viewWithTag:1024];
+    UIImageView *image = [self.view viewWithTag:Tag];
     [image removeFromSuperview];
 
     self.takeFinishView.hidden = YES;
@@ -447,45 +449,18 @@
 
 - (void)commit{
 
-    UIImageView *image = [self.view viewWithTag:1024];
+    UIImageView *image = [self.view viewWithTag:Tag];
 
     [self back];
-
-    [self loadImageFinished:image.image];
-
-//    __block NSString *createdAssetID =nil;//唯一标识，可以用于图片资源获取
-//    [[PHPhotoLibrary sharedPhotoLibrary]performChangesAndWait:^{
-//        createdAssetID = [PHAssetChangeRequest            creationRequestForAssetFromImage:image.image].placeholderForCreatedAsset.localIdentifier;
-//
-//    } error:nil];
-
-/*
 
     // 判断授权状态
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         if (status != PHAuthorizationStatusAuthorized) return;
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *error = nil;
+        [self loadImageFinished:image.image];
 
-            // 保存相片到相机胶卷
-            __block PHObjectPlaceholder *createdAsset = nil;
-            [[PHPhotoLibrary sharedPhotoLibrary] performChangesAndWait:^{
-                if (@available(iOS 9.0, *)) {
-                    createdAsset = [PHAssetCreationRequest creationRequestForAssetFromImage:image.image].placeholderForCreatedAsset;
-                } else {
-                    // Fallback on earlier versions
-                    
-                }
-            } error:&error];
-
-            if (error) {
-                NSLog(@"保存失败：%@", error);
-                return;
-            }
-        });
     }];
-*/
+
 }
 
 - (void)loadImageFinished:(UIImage *)image
@@ -511,9 +486,8 @@
                 *stop = YES;
             }];
 
-            if (imageAsset)
-            {
-
+            if (imageAsset){
+                
                 CHPhotoModel *model = [[CHPhotoModel alloc] init];
                 model.asset = imageAsset;
                 NSMutableArray *array = [NSMutableArray array];

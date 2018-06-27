@@ -60,7 +60,7 @@
     [super viewDidAppear:animated];
 
     if (self.albumModelArray.count == 0) {
-        [self getAlbumModelList:^(CHAlbumModel *firstAlbumModel) {
+        [self.manager getAlbumModelList:^(CHAlbumModel *firstAlbumModel) {
 
             for (NSInteger i = 0; i < firstAlbumModel.result.count; i++) {
                 // 获取一个资源（PHAsset）
@@ -75,76 +75,6 @@
         }];
     }
 
-}
-
-- (void)getAlbumModelList:(void(^)(CHAlbumModel *firstAlbumModel))firstModel {
-
-    // 获取系统智能相册
-    PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
-    [smartAlbums enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(PHAssetCollection *collection, NSUInteger idx, BOOL * _Nonnull stop) {
-
-            if ([[self transFormPhotoTitle:collection.localizedTitle] isEqualToString:@"相机胶卷"] || [[self transFormPhotoTitle:collection.localizedTitle] isEqualToString:@"所有照片"]) {
-
-                // 是否按创建时间排序
-                PHFetchOptions *option = [[PHFetchOptions alloc] init];
-                option.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
-                if (self.manager.type == CHPhotoManagerSelectedTypePhoto) {
-                    option.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeImage];
-                }else if (self.manager.type == CHPhotoManagerSelectedTypeVideo) {
-                    option.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeVideo];
-                }
-                // 获取照片集合
-                PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:collection options:option];
-
-                CHAlbumModel *albumModel = [[CHAlbumModel alloc] init];
-                albumModel.count = result.count;
-                albumModel.albumName = collection.localizedTitle;
-                albumModel.result = result;
-                albumModel.index = 0;
-                if (firstModel) {
-                    firstModel(albumModel);
-                }
-                *stop = YES;
-            }
-
-    }];
-
-
-}
-
-/**
- 相册名称转换
- */
-- (NSString *)transFormPhotoTitle:(NSString *)englishName {
-    NSString *photoName;
-    if ([englishName isEqualToString:@"Bursts"]) {
-        photoName = @"连拍快照";
-    }else if([englishName isEqualToString:@"Recently Added"]){
-        photoName = @"最近添加";
-    }else if([englishName isEqualToString:@"Screenshots"]){
-        photoName = @"屏幕快照";
-    }else if([englishName isEqualToString:@"Camera Roll"]){
-        photoName = @"相机胶卷";
-    }else if([englishName isEqualToString:@"Selfies"]){
-        photoName = @"自拍";
-    }else if([englishName isEqualToString:@"My Photo Stream"]){
-        photoName = @"我的照片流";
-    }else if([englishName isEqualToString:@"Videos"]){
-        photoName = @"视频";
-    }else if([englishName isEqualToString:@"All Photos"]){
-        photoName = @"所有照片";
-    }else if([englishName isEqualToString:@"Slo-mo"]){
-        photoName = @"慢动作";
-    }else if([englishName isEqualToString:@"Recently Deleted"]){
-        photoName = @"最近删除";
-    }else if([englishName isEqualToString:@"Favorites"]){
-        photoName = @"个人收藏";
-    }else if([englishName isEqualToString:@"Panoramas"]){
-        photoName = @"全景照片";
-    }else {
-        photoName = englishName;
-    }
-    return photoName;
 }
 
 - (void)configTitle{
@@ -178,16 +108,6 @@
 
     self.selectedView.commit = ^{
 
-//            [WeakSelf.allSelectedPhotos enumerateObjectsUsingBlock:^(CHPhotoModel  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//
-//                CHPhotoModel *model = obj;
-//                if (model && model.asset) {
-//                    NSString *filename = [model.asset valueForKey:@"filename"];
-//                    NSLog(@"选中的图片 : %@",filename);
-//                }
-//
-//            }];
-
         [WeakSelf closePage:1];
 
     };
@@ -218,8 +138,6 @@
     }
     self.selectedView.hidden = YES;
     [self dismissViewControllerAnimated:YES completion:nil];
-
-
 
 }
 
@@ -432,9 +350,6 @@
 }
 
 #pragma mark - < UICollectionViewDelegate >
-//- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-//
-//}
 
 - (UICollectionView *)collectionView {
     if (!_collectionView) {

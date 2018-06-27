@@ -39,16 +39,11 @@ typedef enum : NSUInteger {
  */
 @property (strong, nonatomic) CHPhotoConfiguration *configuration;
 
-/**
- *  本地图片数组 <UIImage *> 装的是UIImage对象 - 已设置为选中状态
- */
-@property (copy, nonatomic) NSMutableArray *localImageList;
-
 
 + (void)getPhotoForPHAsset:(PHAsset *)asset size:(CGSize)size completion:(void(^)(UIImage *image,NSDictionary *info))completion;
 
 
-
+- (void)getAlbumModelList:(void(^)(CHAlbumModel *firstAlbumModel))firstModel;
 
 
 @end
