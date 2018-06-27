@@ -18,6 +18,13 @@
 
 }
 
+- (CHPhotoConfiguration *)configuration{
+    if (!_configuration) {
+        _configuration = [[CHPhotoConfiguration alloc] init];
+    }
+    return _configuration;
+}
+
 - (NSMutableArray *)localImageList{
 
     if (!_localImageList) {

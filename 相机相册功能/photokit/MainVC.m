@@ -7,7 +7,6 @@
 //
 
 #import "MainVC.h"
-#import "AlbmListVC.h"
 #import "CameraVC.h"
 #import "UIColor+Extension.h"
 
@@ -20,7 +19,6 @@
 
 @interface MainVC ()<UIScrollViewDelegate>
 
-@property (nonatomic,strong)AlbmListVC *albmsvc;
 @property (nonatomic,strong)CameraVC *cameravc;
 
 @property (nonatomic,strong)UIScrollView *scrollView;
@@ -40,6 +38,15 @@
 
 @implementation MainVC
 
+- (instancetype)init{
+
+    if (self == [super init]) {
+        self.albmsvc = [[AlbmListVC alloc] init];
+        self.cameravc = [[CameraVC alloc] init];
+    }
+    return self;
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,15 +69,11 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
 
-    self.albmsvc = [[AlbmListVC alloc] init];
     self.albmsvc.view.frame = CGRectMake(SelfWidth, 0, SelfWidth, self.scrollView.frame.size.height);
     [self.scrollView addSubview:self.albmsvc.view];
     [self addChildViewController:self.albmsvc];
-//    [self.albmsvc directGoPhotoViewController];
 
 
-
-    self.cameravc = [[CameraVC alloc] init];
     self.cameravc.view.frame = CGRectMake(0, 0, SelfWidth, self.scrollView.frame.size.height);
     [self.scrollView addSubview:self.cameravc.view];
     [self addChildViewController:self.cameravc];

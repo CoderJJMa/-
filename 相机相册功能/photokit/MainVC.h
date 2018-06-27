@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AlbmListVC.h"
 
 @interface MainVC : UIViewController
 
-
+@property (nonatomic,strong)AlbmListVC *albmsvc;
 
 @end
 

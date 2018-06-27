@@ -7,6 +7,8 @@
 //
 
 #import "CameraVC.h"
+#import "CHPhotoModel.h"
+
 //导入相机框架
 #import <AVFoundation/AVFoundation.h>
 //将拍摄好的照片写入系统相册中，所以我们在这里还需要导入一个相册需要的头文件iOS8
@@ -141,7 +143,7 @@
     btn.frame = CGRectMake(20, 20, 32, 44);
 //    [btn setTitle:@"取消" forState:UIControlStateNormal];
     [btn setImage:[UIImage imageNamed:@"navbar_close"] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(disMiss) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(disMiss:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
 
     // 底部的整体的view
@@ -404,9 +406,10 @@
 
 }
 
-- (void)disMiss
-{
+- (void)disMiss:(BOOL)isSendMessage{
+
     [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 #pragma mark- 检测相机权限
@@ -448,6 +451,16 @@
 
     [self back];
 
+    [self loadImageFinished:image.image];
+
+//    __block NSString *createdAssetID =nil;//唯一标识，可以用于图片资源获取
+//    [[PHPhotoLibrary sharedPhotoLibrary]performChangesAndWait:^{
+//        createdAssetID = [PHAssetChangeRequest            creationRequestForAssetFromImage:image.image].placeholderForCreatedAsset.localIdentifier;
+//
+//    } error:nil];
+
+/*
+
     // 判断授权状态
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         if (status != PHAuthorizationStatusAuthorized) return;
@@ -458,7 +471,12 @@
             // 保存相片到相机胶卷
             __block PHObjectPlaceholder *createdAsset = nil;
             [[PHPhotoLibrary sharedPhotoLibrary] performChangesAndWait:^{
-                createdAsset = [PHAssetCreationRequest creationRequestForAssetFromImage:image.image].placeholderForCreatedAsset;
+                if (@available(iOS 9.0, *)) {
+                    createdAsset = [PHAssetCreationRequest creationRequestForAssetFromImage:image.image].placeholderForCreatedAsset;
+                } else {
+                    // Fallback on earlier versions
+                    
+                }
             } error:&error];
 
             if (error) {
@@ -467,7 +485,53 @@
             }
         });
     }];
+*/
+}
 
+- (void)loadImageFinished:(UIImage *)image
+{
+    NSMutableArray *imageIds = [NSMutableArray array];
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        //写入图片到相册
+        PHAssetChangeRequest *req = [PHAssetChangeRequest creationRequestForAssetFromImage:image];
+        //记录本地标识，等待完成后取到相册中的图片对象
+        [imageIds addObject:req.placeholderForCreatedAsset.localIdentifier];
+
+    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+
+        NSLog(@"success = %d, error = %@", success, error);
+
+        if (success)
+        {
+            //成功后取相册中的图片对象
+            __block PHAsset *imageAsset = nil;
+            PHFetchResult *result = [PHAsset fetchAssetsWithLocalIdentifiers:imageIds options:nil];
+            [result enumerateObjectsUsingBlock:^(PHAsset * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                imageAsset = obj;
+                *stop = YES;
+            }];
+
+            if (imageAsset)
+            {
+
+                CHPhotoModel *model = [[CHPhotoModel alloc] init];
+                model.asset = imageAsset;
+                NSMutableArray *array = [NSMutableArray array];
+                 [array addObject:model];
+                [self disMiss:1];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"SelectedPhotos" object:array];
+                //加载图片数据
+                [[PHImageManager defaultManager] requestImageDataForAsset:imageAsset
+                                                                  options:nil
+                                                            resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+
+                                                                NSLog(@"imageData = %@", imageData);
+
+                                                            }];
+            }
+        }
+
+    }];
 }
 
 

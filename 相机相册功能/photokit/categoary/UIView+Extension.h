@@ -30,11 +30,14 @@
 - (void)showLoadingHUDText:(NSString *)text;
 - (void)handleLoading;
 
-/* <HXAlbumListViewControllerDelegate> */
-- (void)hx_presentAlbumListViewControllerWithManager:(CHPhotoManager *)manager delegate:(id)delegate;
+@property (nonatomic, assign) CGFloat x;
+@property (nonatomic, assign) CGFloat y;
+@property (nonatomic, assign) CGFloat centerX;
+@property (nonatomic, assign) CGFloat centerY;
+@property (nonatomic, assign) CGFloat width;
+@property (nonatomic, assign) CGFloat height;
+@property (nonatomic, assign) CGSize size;
 
-/* <HXCustomCameraViewControllerDelegate> */
-- (void)hx_presentCustomCameraViewControllerWithManager:(CHPhotoManager *)manager delegate:(id)delegate;
 
 @end
 

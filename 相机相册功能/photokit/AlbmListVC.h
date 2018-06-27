@@ -12,5 +12,6 @@
 @interface AlbmListVC : UIViewController
 
 @property (strong, nonatomic) CHPhotoManager *manager;
+@property (nonatomic,strong)NSMutableArray *allSelectedPhotos;
 
 @end

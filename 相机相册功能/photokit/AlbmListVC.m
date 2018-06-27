@@ -28,16 +28,22 @@
 @property (nonatomic,strong)UIView *navView;
 @property (nonatomic,strong)UIButton *closeBtn;
 
-@property (nonatomic,strong)NSMutableArray *allSelectedPhotos;
 
 @property (nonatomic,strong)CHSelectedViews *selectedView;
 
 @end
 
 
-
 @implementation AlbmListVC
 
+- (instancetype)init{
+
+    if(self == [super init]){
+        self.allSelectedPhotos = [NSMutableArray array];
+    }
+    return self;
+
+}
 
 - (void)viewDidLoad{
 
@@ -52,8 +58,6 @@
 - (void)viewDidAppear:(BOOL)animated {
 
     [super viewDidAppear:animated];
-
-    self.allSelectedPhotos = self.manager.localImageList;
 
     if (self.albumModelArray.count == 0) {
         [self getAlbumModelList:^(CHAlbumModel *firstAlbumModel) {
@@ -152,7 +156,7 @@
 
     self.closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.navView.frame.size.width - 15 - 32, 20, 32, 44)];
     [self.closeBtn setImage:[UIImage imageNamed:@"navbar_close"] forState:UIControlStateNormal];
-    [self.closeBtn addTarget:self action:@selector(closePage) forControlEvents:UIControlEventTouchUpInside];
+    [self.closeBtn addTarget:self action:@selector(closePage:) forControlEvents:UIControlEventTouchUpInside];
     [self.navView addSubview:self.closeBtn];
 
 
@@ -184,7 +188,7 @@
 //
 //            }];
 
-        [WeakSelf closePage];
+        [WeakSelf closePage:1];
 
     };
 
@@ -207,9 +211,11 @@
 
 }
 
-- (void)closePage{
+- (void)closePage:(BOOL)isSendMessage{
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"SelectedPhotos" object:self.allSelectedPhotos];
+    if (isSendMessage) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SelectedPhotos" object:self.allSelectedPhotos];
+    }
     self.selectedView.hidden = YES;
     [self dismissViewControllerAnimated:YES completion:nil];
 
@@ -234,7 +240,7 @@
     CHPhotoModel *model = self.albumModelArray[indexPath.item];
     CHAlbumListCell *cell = (CHAlbumListCell *)[collectionView cellForItemAtIndexPath:indexPath];
 
-    if (self.allSelectedPhotos.count >= 4) {
+    if (self.allSelectedPhotos.count >= _manager.configuration.photoMaxNum) {
         if(cell.isSelected){
             [self.allSelectedPhotos removeObject:model];
         }else{
@@ -255,8 +261,6 @@
     [self selectedViewUI];
 
     [self deleteAddUI];
-
-    self.selectedView.countLabel.text = [NSString stringWithFormat:@"%ld/4",self.allSelectedPhotos.count];
 
 }
 
@@ -395,6 +399,8 @@
     }
 
 
+    self.selectedView.countLabel.text = [NSString stringWithFormat:@"%ld/%ld",self.allSelectedPhotos.count,_manager.configuration.photoMaxNum];
+
 }
 
 // 底部选中图片显示/隐藏
@@ -508,6 +514,10 @@
         _albumModelArray = [NSMutableArray array];
     }
     return _albumModelArray;
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
