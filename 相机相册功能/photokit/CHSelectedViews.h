@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIView *fourImg;
 @property (weak, nonatomic) IBOutlet UIImageView *fourImage;
 
+@property (weak, nonatomic) IBOutlet UIView *okView;
 
 @property (weak, nonatomic) IBOutlet UIView *commitView;
 

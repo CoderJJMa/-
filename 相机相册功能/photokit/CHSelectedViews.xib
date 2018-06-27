@@ -137,7 +137,7 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2/4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TxP-7T-wJA">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TxP-7T-wJA">
                                     <rect key="frame" x="39.5" y="29" width="37" height="20"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -195,6 +195,7 @@
                 <outlet property="firstImg" destination="4mv-f0-lHn" id="459-cq-BoE"/>
                 <outlet property="fourImage" destination="g5z-U2-Zaw" id="Tuz-HT-q2e"/>
                 <outlet property="fourImg" destination="osp-WM-WhB" id="vta-hj-ZSC"/>
+                <outlet property="okView" destination="l51-DD-q6M" id="BS5-LR-9Q9"/>
                 <outlet property="secondImage" destination="DvN-AB-CBp" id="xMN-Ps-UCn"/>
                 <outlet property="secondImg" destination="gaf-50-U7b" id="4xC-8a-oeR"/>
                 <outlet property="thirdImage" destination="hyz-8h-dSR" id="r6v-C9-ofC"/>

@@ -40,7 +40,7 @@ typedef enum : NSUInteger {
 
  @param albums 相册集合
  */
-- (void)getAllPhotoAlbums:(void(^)(CHAlbumModel *firstAlbumModel))firstModel albums:(void(^)(NSArray *albums))albums isFirst:(BOOL)isFirst;
+//- (void)getAllPhotoAlbums:(void(^)(CHAlbumModel *firstAlbumModel))firstModel albums:(void(^)(NSArray *albums))albums isFirst:(BOOL)isFirst;
 
 
 /**
@@ -51,7 +51,7 @@ typedef enum : NSUInteger {
 /**
  *  本地图片数组 <UIImage *> 装的是UIImage对象 - 已设置为选中状态
  */
-@property (copy, nonatomic) NSArray *localImageList;
+@property (copy, nonatomic) NSMutableArray *localImageList;
 
 
 @end

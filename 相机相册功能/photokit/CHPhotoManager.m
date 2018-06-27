@@ -18,11 +18,12 @@
 
 }
 
-- (void)getAllPhotoAlbums:(void(^)(CHAlbumModel *firstAlbumModel))firstModel albums:(void(^)(NSArray *albums))albums isFirst:(BOOL)isFirst{
+- (NSMutableArray *)localImageList{
 
-
-
-
+    if (!_localImageList) {
+        _localImageList = [NSMutableArray array];
+    }
+    return _localImageList;
 }
 
 @end

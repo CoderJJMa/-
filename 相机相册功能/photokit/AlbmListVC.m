@@ -61,13 +61,15 @@
                 PHAsset *asset = firstAlbumModel.result[i];
                 CHPhotoModel *model = [CHPhotoModel new];
                 model.asset = asset;
-                [self.albumModelArray addObject:model];
+                [self.manager.localImageList addObject:model];
             }
 
             [self.collectionView reloadData];
 
         }];
     }
+
+    self.albumModelArray = self.manager.localImageList;
 }
 
 - (void)getAlbumModelList:(void(^)(CHAlbumModel *firstAlbumModel))firstModel {
@@ -217,6 +219,8 @@
     [self selectedViewUI];
 
     [self deleteAddUI];
+
+    self.selectedView.countLabel.text = [NSString stringWithFormat:@"%ld/4",self.allSelectedPhotos.count];
 
 }
 
