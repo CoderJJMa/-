@@ -129,16 +129,16 @@
                     <rect key="frame" x="322" y="0.0" width="132" height="74"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l51-DD-q6M">
-                            <rect key="frame" x="8" y="8" width="116" height="58"/>
+                            <rect key="frame" x="8" y="8" width="119" height="58"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12h-jY-nJP">
-                                    <rect key="frame" x="39.5" y="8" width="37" height="22"/>
+                                    <rect key="frame" x="41" y="8" width="37" height="22"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/4" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TxP-7T-wJA">
-                                    <rect key="frame" x="39.5" y="29" width="37" height="20"/>
+                                    <rect key="frame" x="41" y="29" width="37" height="20"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -160,7 +160,7 @@
                         <constraint firstItem="l51-DD-q6M" firstAttribute="leading" secondItem="its-bR-rG1" secondAttribute="leading" constant="8" id="2AE-QM-bWi"/>
                         <constraint firstItem="l51-DD-q6M" firstAttribute="top" secondItem="its-bR-rG1" secondAttribute="top" constant="8" id="i5d-yt-MXf"/>
                         <constraint firstAttribute="bottom" secondItem="l51-DD-q6M" secondAttribute="bottom" constant="8" id="loc-Q1-mcl"/>
-                        <constraint firstAttribute="trailing" secondItem="l51-DD-q6M" secondAttribute="trailing" constant="8" id="rgQ-ua-FYq"/>
+                        <constraint firstAttribute="trailing" secondItem="l51-DD-q6M" secondAttribute="trailing" constant="5" id="rgQ-ua-FYq"/>
                     </constraints>
                 </view>
             </subviews>

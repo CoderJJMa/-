@@ -7,6 +7,7 @@
 //
 
 #import "AViewController.h"
+#import "ViewController.h"
 
 @interface AViewController ()
 
@@ -16,22 +17,45 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)jump:(id)sender {
+
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[ViewController new]];
+//    [nav setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+//    [self presentViewController:nav animated:YES completion:nil];
+
+
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[ViewController new]];
+//    CATransition *animation = [CATransition animation];
+//    animation.duration = 0.5;
+//    animation.type = @"rippleEffect";
+//    //可以改变subtype的类型
+//    animation.subtype = kCATransitionFromLeft;
+//    [self.view.window.layer addAnimation:animation forKey:nil];
+//
+//    [self presentViewController:nav animated:YES completion:nil];
+
+
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[ViewController new]];
+    CATransition *animation = [CATransition animation];
+    animation.duration = 1.0;
+    // `linear', `easeIn', `easeOut' `easeInEaseOut' and `default'
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:@"linear"];
+    animation.type = kCATransitionFade;
+    //可以改变subtype的类型
+    animation.subtype = kCATransitionFromLeft;
+    [self.view.window.layer addAnimation:animation forKey:nil];
+    [self presentViewController:nav animated:YES completion:nil];
+
+
+//    [self presentViewController:[ViewController new] animated:YES completion:nil];
+
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
