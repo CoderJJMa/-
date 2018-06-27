@@ -20,7 +20,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ama-Mg-SpH" userLabel="first">
                     <rect key="frame" x="0.0" y="0.0" width="94" height="77"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="measure_icon_upload" translatesAutoresizingMaskIntoConstraints="NO" id="wYI-Vk-al4">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="measure_icon_upload" translatesAutoresizingMaskIntoConstraints="NO" id="wYI-Vk-al4">
                             <rect key="frame" x="11" y="2.5" width="72" height="72"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="wYI-Vk-al4" secondAttribute="height" multiplier="1:1" id="31z-OZ-SNC"/>
@@ -48,7 +48,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="498-6F-M8q" userLabel="second">
                     <rect key="frame" x="94" y="0.0" width="94" height="77"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="measure_icon_upload" translatesAutoresizingMaskIntoConstraints="NO" id="wEe-eW-4jf">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="measure_icon_upload" translatesAutoresizingMaskIntoConstraints="NO" id="wEe-eW-4jf">
                             <rect key="frame" x="11" y="2.5" width="72" height="72"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="wEe-eW-4jf" secondAttribute="height" multiplier="1:1" id="l5e-R2-dXw"/>
@@ -74,7 +74,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kmp-uU-JbD" userLabel="third">
                     <rect key="frame" x="188" y="0.0" width="94" height="77"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="measure_icon_upload" translatesAutoresizingMaskIntoConstraints="NO" id="0A0-L5-AJY">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="measure_icon_upload" translatesAutoresizingMaskIntoConstraints="NO" id="0A0-L5-AJY">
                             <rect key="frame" x="11" y="2.5" width="72" height="72"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="0A0-L5-AJY" secondAttribute="height" multiplier="1:1" id="tUX-6t-RSG"/>
@@ -100,7 +100,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ArL-VL-N5p" userLabel="four">
                     <rect key="frame" x="282" y="0.0" width="94" height="77"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="measure_icon_upload" translatesAutoresizingMaskIntoConstraints="NO" id="HKQ-sW-PIg">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="measure_icon_upload" translatesAutoresizingMaskIntoConstraints="NO" id="HKQ-sW-PIg">
                             <rect key="frame" x="11" y="2.5" width="72" height="72"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="HKQ-sW-PIg" secondAttribute="height" multiplier="1:1" id="Pbd-Fj-b3y"/>
