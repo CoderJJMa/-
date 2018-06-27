@@ -10,9 +10,15 @@
 
 typedef void(^CommitPhotosBlock)(void);
 
+typedef void(^RemovePhotoBlock)(int index);
+
+
 @interface CHSelectedViews : UIView
 
 @property (nonatomic,copy)CommitPhotosBlock commit;
+
+@property (nonatomic,copy)RemovePhotoBlock remove;
+
 
 @property (weak, nonatomic) IBOutlet UIView *firstImg;
 @property (weak, nonatomic) IBOutlet UIImageView *firstImage;

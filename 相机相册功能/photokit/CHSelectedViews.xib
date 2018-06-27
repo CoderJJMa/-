@@ -33,6 +33,9 @@
                                 <constraint firstAttribute="height" constant="20" id="UCY-TN-cv6"/>
                             </constraints>
                             <state key="normal" image="phtoto_icon_close"/>
+                            <connections>
+                                <action selector="removeFirst:" destination="iN0-l3-epB" eventType="touchUpInside" id="XA3-SB-2Gq"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,6 +63,9 @@
                                 <constraint firstAttribute="height" constant="20" id="Nbm-O0-EGh"/>
                             </constraints>
                             <state key="normal" image="phtoto_icon_close"/>
+                            <connections>
+                                <action selector="removeSecond:" destination="iN0-l3-epB" eventType="touchUpInside" id="a83-zb-VTl"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -87,6 +93,9 @@
                                 <constraint firstAttribute="height" constant="20" id="dVG-zk-JdA"/>
                             </constraints>
                             <state key="normal" image="phtoto_icon_close"/>
+                            <connections>
+                                <action selector="removeThird:" destination="iN0-l3-epB" eventType="touchUpInside" id="mbz-gh-ubT"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -114,6 +123,9 @@
                                 <constraint firstAttribute="height" constant="20" id="pgS-S3-o2L"/>
                             </constraints>
                             <state key="normal" image="phtoto_icon_close"/>
+                            <connections>
+                                <action selector="removeFourth:" destination="iN0-l3-epB" eventType="touchUpInside" id="hRv-RD-Ijq"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

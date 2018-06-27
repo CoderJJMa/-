@@ -17,4 +17,6 @@
 
 @property (nonatomic,assign)CGSize size;
 
+@property (nonatomic,strong)NSIndexPath *indexPath;
+
 @end

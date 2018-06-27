@@ -41,4 +41,45 @@
 
 }
 
+
+
+- (IBAction)removeFirst:(id)sender {
+
+    if (self.remove) {
+        self.remove(0);
+    }
+
+}
+
+
+- (IBAction)removeSecond:(id)sender {
+
+    if (self.remove) {
+        self.remove(1);
+    }
+
+}
+
+
+- (IBAction)removeThird:(id)sender {
+
+    if (self.remove) {
+        self.remove(2);
+    }
+
+}
+
+- (IBAction)removeFourth:(id)sender {
+
+    if (self.remove) {
+        self.remove(3);
+    }
+
+}
+
+
+
+
+
+
 @end

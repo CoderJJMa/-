@@ -182,6 +182,32 @@
                 }
 
             }];
+
+        [WeakSelf closePage];
+
+    };
+
+    self.selectedView.remove = ^(int index) {
+
+        if (WeakSelf.allSelectedPhotos.count > 0) {
+
+            CHPhotoModel *model = WeakSelf.allSelectedPhotos[index];
+
+
+            CHAlbumListCell *cell = (CHAlbumListCell *)[WeakSelf.collectionView cellForItemAtIndexPath:model.indexPath];
+
+            NSLog(@"删除 : %ld",model.indexPath.row);
+
+            cell.isSelected = NO;
+            cell.coverView.hidden = YES;
+
+            [WeakSelf.collectionView reloadItemsAtIndexPaths:@[model.indexPath]];
+
+            [WeakSelf.allSelectedPhotos removeObjectAtIndex:index];
+            [WeakSelf deleteAddUI];
+
+        }
+
     };
 
 }
@@ -221,6 +247,8 @@
         if (cell.isSelected) {
             [self.allSelectedPhotos removeObject:model];
         }else{
+            model.indexPath = indexPath;
+            NSLog(@"选中   : %ld",indexPath.row);
             [self.allSelectedPhotos addObject:model];
         }
     }
@@ -238,7 +266,6 @@
 - (void)deleteAddUI{
 
     PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
-
 
     if (self.allSelectedPhotos.count > 0) {
 
@@ -363,6 +390,11 @@
 
         }
 
+    }else{
+
+        [UIView animateWithDuration:0.3 animations:^{
+            self.selectedView.frame = CGRectMake(0, KScreenHeight, KScreenWidth, 74);
+        }];
     }
 
 

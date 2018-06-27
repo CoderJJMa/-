@@ -70,6 +70,12 @@
 
 }
 
+- (void)setIsSelected:(BOOL)isSelected{
+
+    _isSelected = isSelected;
+    self.selectNumberBtn.selected = _isSelected;
+}
+
 #pragma mark - < cell懒加载 >
 - (UIImageView *)coverView {
     if (!_coverView) {
