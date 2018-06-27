@@ -19,6 +19,17 @@
     self.thirdImg.hidden = YES;
     self.fourImg.hidden = YES;
 
+    self.okView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCommit)];
+    [self.okView addGestureRecognizer:tap];
+
+}
+
+- (void)tapCommit{
+
+    if (self.commit) {
+        self.commit();
+    }
 }
 
 + (instancetype)loadView{

@@ -62,7 +62,7 @@
 
 - (void)selectedIndexPath:(NSIndexPath *)indexPath model:(CHPhotoModel *)model photos:(NSMutableArray *)photos{
 
-    NSLog(@"filename : %@   indexPath : %ld",model.fileName,(long)indexPath.row);
+//    NSLog(@"filename : %@   indexPath : %ld",model.fileName,(long)indexPath.row);
     self.isSelected = !self.isSelected;
     self.selectNumberBtn.selected = self.isSelected;
 

@@ -169,6 +169,21 @@
     self.selectedView.frame = CGRectMake(0, KScreenHeight, KScreenWidth, 74);
     [[UIApplication sharedApplication].keyWindow addSubview:self.selectedView];
 
+    __weak typeof(self)WeakSelf = self;
+
+    self.selectedView.commit = ^{
+
+            [WeakSelf.allSelectedPhotos enumerateObjectsUsingBlock:^(CHPhotoModel  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+
+                CHPhotoModel *model = obj;
+                if (model && model.asset) {
+                    NSString *filename = [model.asset valueForKey:@"filename"];
+                    NSLog(@"选中的图片 : %@",filename);
+                }
+
+            }];
+    };
+
 }
 
 - (void)closePage{
@@ -211,10 +226,6 @@
     }
 
     [cell selectedIndexPath:indexPath model:model photos:self.allSelectedPhotos];
-
-//    [self.allSelectedPhotos enumerateObjectsUsingBlock:^(CHPhotoModel  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//
-//    }];
 
     [self selectedViewUI];
 

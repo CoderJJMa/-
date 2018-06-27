@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^CommitPhotosBlock)(void);
+
 @interface CHSelectedViews : UIView
+
+@property (nonatomic,copy)CommitPhotosBlock commit;
 
 @property (weak, nonatomic) IBOutlet UIView *firstImg;
 @property (weak, nonatomic) IBOutlet UIImageView *firstImage;
