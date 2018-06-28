@@ -457,7 +457,10 @@
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         if (status != PHAuthorizationStatusAuthorized) return;
 
-        [self loadImageFinished:image.image];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self loadImageFinished:image.image];
+        });
+
 
     }];
 
